@@ -1,18 +1,24 @@
 {
-  "name": "nuxtjs",
+  "name": "clientele-nuxt",
   "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
-  "author": "msweeneydev",
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt generate",
-    "start": "nuxt start"
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@nuxt/content": "^1.11.1",
+    "@nuxtjs/axios": "^5.12.3",
+    "core-js": "^3.8.0",
+    "nuxt": "^2.14.9",
+    "vue-tweet-embed": "^2.4.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "@nuxtjs/tailwindcss": "^3.3.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.1"
   }
 }
