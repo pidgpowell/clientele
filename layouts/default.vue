@@ -1,26 +1,8 @@
 <template>
   <div>
     <header>
-      <nuxt-link to="/"><h1>The Clientele</h1></nuxt-link>
-
-      <nav class="space-x-2">
-        <NuxtLink to="/">Home</NuxtLink>
-        <NuxtLink
-          to="/news"
-          :class="{
-            'nuxt-link-exact-active':
-              $route.path.includes('/news/') && $route.path !== '/news',
-          }"
-        >
-          News
-        </NuxtLink>
-        <NuxtLink to="/discography">Discography</NuxtLink>
-      </nav>
+      Test
     </header>
-
-    <div class="p-0 sm:p-4 m-auto">
-      <Nuxt />
-    </div>
   </div>
 </template>
 
