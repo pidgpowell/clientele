@@ -28,10 +28,9 @@
 html, body {
   background-color: #ffffff;
   @media all and (min-width: 767px) {
-  background-color: #f5f5f5;
-  height: 100vh;
+    background-color: #f5f5f5;
+    height: 100vh;
   }
-
 }
 h2 {
     font-family: 'Public Sans', sans-serif;
