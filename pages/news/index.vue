@@ -3,11 +3,15 @@
     <h2 class="mb-3">News</h2>
 
     <div v-for="(post, index) in news" :key="index" class="mb-3">
-      <p class="text-sm text-gray-700">{{ formatDate(post.date) }}</p>
+      <template v-if="post.path">
+        <p class="text-sm text-gray-700">{{ formatDate(post.date) }}</p>
 
-      <NuxtLink :to="post.path" class="underline">{{ post.title }}</NuxtLink>
+        <NuxtLink :to="post.path" class="underline" v-if="post.path">{{
+          post.title
+        }}</NuxtLink>
 
-      <div v-html="post.description" />
+        <div v-html="post.description" />
+      </template>
     </div>
   </div>
 </template>
@@ -15,9 +19,9 @@
 <script>
 export default {
   async asyncData({ $content }) {
-    const news = await $content('news')
-      .only(['title', 'date', 'description'])
-      .sortBy('date', 'desc')
+    const news = await $content("news")
+      .only(["title", "date", "description"])
+      .sortBy("date", "desc")
       .limit(10)
       .fetch();
     return {
@@ -27,8 +31,8 @@ export default {
 
   methods: {
     formatDate(date) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(date).toLocaleDateString('en', options);
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(date).toLocaleDateString("en", options);
     },
   },
 };
