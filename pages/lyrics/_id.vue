@@ -2,8 +2,10 @@
   <div class="bg-white p-6 rounded relative">
     <BackButton class="absolute z-10" style="top: -60px; right: 0px" />
 
-    <div class="flex flex-col md:flex-row pb-4">
-      <div class="md:w-1/2 md:pr-8 order-0 md:order-1 relative">
+    <h2 class="mb-3">Lyrics</h2>
+
+    <div class="flex flex-col md:flex-row-reverse pb-4 md:gap-5">
+      <div class="md:w-2/3 relative">
         <h4 class="mb-3 border-b border-gray-300">Lyrics</h4>
 
         <Song
@@ -14,7 +16,7 @@
         />
       </div>
 
-      <div class="md:w-1/2 pr-0 order-1 md:order-0">
+      <div class="md:w-1/3 pr-0">
         <h3 class="mb-3 border-b border-gray-300">Release</h3>
 
         <Release :release="release" />
