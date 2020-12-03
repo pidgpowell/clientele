@@ -12,7 +12,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       {
-        content: this.campaign.disallow_indexing ? 'noindex, nofollow' : 'index, follow',
+        content: 'noindex, nofollow',
         name: 'robots'
       }
     ],
