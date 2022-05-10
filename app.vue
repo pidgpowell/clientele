@@ -10,7 +10,7 @@ const { data: document } = await useAsyncData('news', () => { return queryConten
 </script>
 
 <template>
-
+  <Title>The Clientele</Title>
   <Head>
     <Link rel="preconnect" href="https://fonts.googleapis.com" />
     <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
