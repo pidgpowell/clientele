@@ -1,6 +1,7 @@
 <template>
   <a :href="url">
-    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" :width="width">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" :width="width" aria-labelledby="title">
+      <title id="title">Instagram</title>
       <rect :fill="colorLight" height="512" rx="30%" width="512" />
       <path d="m301 256c0 24.851562-20.148438 45-45 45s-45-20.148438-45-45 20.148438-45 45-45 45 20.148438 45 45zm0 0"
         :fill="colorDark" />
