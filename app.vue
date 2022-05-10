@@ -6,7 +6,6 @@ const primaryHover = "#000";
 const formatDate = (date) => Intl.DateTimeFormat("en", { dateStyle: 'medium' }).format(new Date(date));
 
 const { data: home } = await useAsyncData('static', () => { return queryContent('/').findOne() })
-const { data: document } = await useAsyncData('news', () => { return queryContent('/news').sortBy('date', 'desc').findOne() })
 </script>
 
 <template>
