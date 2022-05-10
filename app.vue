@@ -10,6 +10,7 @@ const { data: home } = await useAsyncData('static', () => { return queryContent(
 
 <template>
   <Title>The Clientele</Title>
+  <Html lang="en" />
   <Head>
     <Link rel="preconnect" href="https://fonts.googleapis.com" />
     <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
