@@ -43,11 +43,10 @@ const { data: document } = await useAsyncData('news', () => { return queryConten
         <p class="date text-xs text-gray-500">{{ formatDate(home.date) }}</p>
         <h1 class="mt-0 mb-0">{{ home.title }}</h1>
         <Content v-if="home" :document="home" />
-        <!-- <Content v-if="document" :document="document" /> -->
       </div>
     </div>
 
-    <footer class="mt-auto text-right text-gray-300 text-[10px]">
+    <footer class="mt-auto text-right text-gray-500 text-[10px]">
       &copy; The Clientele 2022
     </footer>
   </div>
