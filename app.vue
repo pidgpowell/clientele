@@ -4,7 +4,8 @@ const primaryDark = "#333";
 const primaryLight = "#fff";
 const primaryHover = "#000";
 const formatDate = (date) => {
-  if (!date) return;
+  console.log('formatDate', data);
+  if (!new Date(date)) return;
   return Intl.DateTimeFormat("en", { dateStyle: 'medium' }).format(new Date(date));
 }
 
