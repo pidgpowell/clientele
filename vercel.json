@@ -3,6 +3,18 @@
         {
             "source": "/news",
             "destination": "/"
+        },
+        {
+            "source": "/discography",
+            "destination": "/"
+        },
+        {
+            "source": "/tourdates",
+            "destination": "/"
+        },
+        {
+            "source": "/blogs/:path*",
+            "destination": "/"
         }
     ]
 }
