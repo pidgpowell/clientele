@@ -43,7 +43,7 @@ useHead({
 </script>
 
 <template>
-  <div class="p-4 sm:p-16 pb-4 grid gap-8 h-screen mb-2">
+  <div class="p-4 pb-4 sm:p-16 sm:pb-4 grid gap-8 h-screen mb-2">
     <div class="flex flex-col gap-4 pr-1 sm:pr-0">
       <h1>
         <svg
