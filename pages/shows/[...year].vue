@@ -1,7 +1,8 @@
 <script setup>
 const { data: shows } = await useAsyncData("shows", () => {
-  return queryContent("/shows").sortBy("date", "desc").find();
+  return queryContent("/shows").find();
 });
+console.log(shows.value);
 const formatDate = useFormat();
 </script>
 

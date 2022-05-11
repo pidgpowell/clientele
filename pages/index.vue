@@ -1,6 +1,6 @@
 <script setup>
-const { data: home } = await useAsyncData("static", () => {
-  return queryContent("/").findOne();
+const { data: home } = await useAsyncData("news", () => {
+  return queryContent("/news").findOne();
 });
 
 const formatDate = useFormat();
