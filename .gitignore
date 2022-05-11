@@ -89,3 +89,4 @@ sw.*
 .DS_Store
 
 .output
+dist

@@ -38,8 +38,7 @@ const { data: home } = await useAsyncData('static', () => { return queryContent(
           url="https://www.facebook.com/theclienteleofficial" />
       </div>
 
-      <div v-if="home"
-        class="-mt-8 md:-mt-12 xl:-mt-[5%] ml-[3.4vw] py-2 pl-8 md:pl-[3.7vw] border-l sm:border-l-2 border-gray-100 prose md:max-w-[59vw]">
+      <div v-if="home" class="-mt-8 md:-mt-12 xl:-mt-[5%] ml-[3.4vw] py-2 pl-8 md:pl-[3.7vw] border-l sm:border-l-2 border-gray-100 prose md:max-w-[59vw]">
         <p class="date text-xs text-gray-500">{{ formatDate(home.date) }}</p>
         <h1 class="mt-0 mb-0">{{ home.title }}</h1>
         <Content v-if="home" :document="home" />
