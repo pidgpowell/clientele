@@ -1,7 +1,7 @@
 {
     "redirects": [
         {
-            "source": "/news",
+            "source": "/news/:path*",
             "destination": "/"
         },
         {
@@ -9,11 +9,15 @@
             "destination": "/"
         },
         {
-            "source": "/tourdates",
+            "source": "/shows/:path*",
             "destination": "/"
         },
         {
             "source": "/blogs/:path*",
+            "destination": "/"
+        },
+        {
+            "source": "/lyrics/:path*",
             "destination": "/"
         }
     ]
