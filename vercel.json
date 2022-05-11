@@ -1,0 +1,12 @@
+{
+    "redirects": [
+        {
+            "source": "/news",
+            "destination": "/"
+        },
+        {
+            "source": "/blogs/*",
+            "destination": "/"
+        }
+    ]
+}
