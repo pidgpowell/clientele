@@ -9,10 +9,6 @@
             "destination": "/"
         },
         {
-            "source": "/shows/:path*",
-            "destination": "/"
-        },
-        {
             "source": "/blogs/:path*",
             "destination": "/"
         },
