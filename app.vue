@@ -3,9 +3,9 @@ const iconWidth = "100%";
 const primaryDark = "#333";
 const primaryLight = "#fff";
 const primaryHover = "#000";
-const formatDate = (date) => {
+const formatDate = (date, options = { dateStyle: "medium" }) => {
   if (!Date.parse(date)) return;
-  return Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(
+  return Intl.DateTimeFormat("en", options).format(
     new Date(date)
   );
 };
@@ -19,7 +19,11 @@ useHead({
   htmlAttrs: {
     lang: "en",
   },
-  meta: [{ name: "og:title", content: `The Clientele` }],
+  meta: [
+    { name: "og:title", content: `The Clientele` },
+    { name: "description", content: `Official website of The Clientele` },
+    { name: "og:description", content: `Official website of The Clientele` }
+  ],
   link: [
     {
       rel: "preconnect",
@@ -95,7 +99,7 @@ useHead({
     </div>
 
     <footer class="mt-auto py-1 px-1 text-right text-gray-500 text-[11px]">
-      &copy; The Clientele 2022
+      &copy; The Clientele {{ formatDate(new Date(), { year: "numeric" }) }}
     </footer>
   </div>
 </template>
