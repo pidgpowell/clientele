@@ -7,11 +7,8 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/content-edge": "^2.0.0-27536649.61e4b1f",
+    "@nuxt/content-edge": "^2.0.0-27538356.d9d805e",
     "@nuxtjs/tailwindcss": "^5.0.4",
     "nuxt": "3.0.0-rc.3"
-  },
-  "dependencies": {
-    "@nuxt/content": "github:nuxt/content#185d1ac"
   }
 }
