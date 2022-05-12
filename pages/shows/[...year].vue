@@ -1,22 +1,42 @@
 <script setup>
-const { data: shows } = await useAsyncData("shows", () => {
-  return queryContent("/shows").find();
-});
-console.log(shows.value);
+const route = useRoute();
 const formatDate = useFormat();
+
+const { data: shows } = await useAsyncData("shows", () => {
+  return queryContent("/shows")
+    .sortBy("date", "desc")
+    .where({ date: { $contains: route.params.year } })
+    .find();
+});
+
+// if (isNaN(Number(route.params.year)))
+//   throwError("😱 Oh no, an error has been thrown.");
+
+// definePageMeta({
+//   title: route.meta.title + " | Shows",
+// });
 </script>
 
 <template>
-  <div>
-    <h2 class="text-3xl">Shows {{ $route.params.year }}</h2>
+  <div class="p-4">
+    <h2 class="text-3xl">Shows</h2>
 
-    <div class="p-4">
-      <div class="flex flex-col gap-4">
-        <div v-for="(show, index) in shows" :key="index">
-          {{ formatDate(show.date) }} – {{ show.city }} – {{ show.venue }}
-          {{ show.description }}
-        </div>
-      </div>
-    </div>
+    <table v-if="shows && shows.length > 0" class="table-auto md:table-fixed">
+      <tr v-for="(show, index) in shows" :key="index">
+        <td class="align-top p-2 pl-0">
+          {{ formatDate(show.date) }}
+        </td>
+        <td class="align-top p-2">
+          {{ show.city }}
+        </td>
+        <td class="align-top p-2">
+          {{ show.venue }}
+          <template v-if="show.description"
+            ><br />{{ show.description }}</template
+          >
+        </td>
+      </tr>
+    </table>
+    <div v-else>No shows in this year.</div>
   </div>
 </template>
