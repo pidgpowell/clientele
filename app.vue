@@ -5,9 +5,7 @@ const primaryLight = "#fff";
 const primaryHover = "#000";
 const formatDate = (date, options = { dateStyle: "medium" }) => {
   if (!Date.parse(date)) return;
-  return Intl.DateTimeFormat("en", options).format(
-    new Date(date)
-  );
+  return Intl.DateTimeFormat("en", options).format(new Date(date));
 };
 
 const { data: home } = await useAsyncData("static", () => {
@@ -22,7 +20,7 @@ useHead({
   meta: [
     { name: "og:title", content: `The Clientele` },
     { name: "description", content: `Official website of The Clientele` },
-    { name: "og:description", content: `Official website of The Clientele` }
+    { name: "og:description", content: `Official website of The Clientele` },
   ],
   link: [
     {
@@ -94,7 +92,7 @@ useHead({
       >
         <p class="date text-xs text-gray-500">{{ formatDate(home.date) }}</p>
         <h1 class="mt-0 mb-0">{{ home.title }}</h1>
-        <Content v-if="home" :document="home" />
+        <ContentDoc v-if="home" :document="home" />
       </div>
     </div>
 
