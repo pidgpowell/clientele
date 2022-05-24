@@ -60,9 +60,7 @@ useHead({
         </svg>
       </h1>
 
-      <div
-        class="grid grid-cols-3 gap-2 sm:gap-4 max-w-[30%] lg:max-w-[20%] ml-auto"
-      >
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 max-w-[30%] lg:max-w-[20%] ml-auto">
         <twitter
           :width="iconWidth"
           :colorDark="primaryDark"
