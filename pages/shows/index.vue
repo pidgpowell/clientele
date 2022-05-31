@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <Shows label="Upcoming Shows" :upcoming="true" />
+  <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
 
   <hr />
 

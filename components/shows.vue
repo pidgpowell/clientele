@@ -10,10 +10,14 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  direction: {
+    type: String,
+    default: "desc",
+  },
 });
 
 let direction = ref({
-  date: true,
+  date: props.direction === "desc",
 });
 
 let search = ref("");
