@@ -171,7 +171,7 @@ const sort = (key) => {
       </thead>
       <tbody class="leading-tight">
         <tr v-for="(show, index) in dates" :key="index">
-          <td class="no-wrap">
+          <td class="whitespace-nowrap">
             {{ formatDate(show.date, { dateStyle: "long" }) }}
           </td>
           <td>
