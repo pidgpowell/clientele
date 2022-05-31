@@ -10,24 +10,24 @@ const isNewsIndex = path === "/news";
 <template>
   <div>
     <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
-      <div class="relative">
-        <nav class="absolute -top-7 flex items-center">
+      <div class="relative pt-2">
+        <nav class="absolute -top-2 flex items-center">
           <icon-home />
           <NuxtLink
-            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/"
           >
             Home</NuxtLink
           >
           <icon-breadcrumb-divider />
           <NuxtLink
-            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/news"
             >News</NuxtLink
           >
         </nav>
 
-        <h2 class="!mt-0">{{ doc.title }}</h2>
+        <h2>{{ doc.title }}</h2>
         <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
           {{ formatDate(doc.date, { dateStyle: "medium" }) }}
         </p>
@@ -36,17 +36,17 @@ const isNewsIndex = path === "/news";
     </ContentDoc>
 
     <template v-if="isNewsIndex">
-      <div class="relative">
-        <nav class="absolute -top-8 flex items-center">
+      <div class="relative pt-2">
+        <nav class="absolute -top-2 flex items-center">
           <icon-home />
           <NuxtLink
-            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/"
           >
             Home</NuxtLink
           >
         </nav>
-        <h2 class="!mt-0">News</h2>
+        <h2>News</h2>
       </div>
       <ul class="list-none m-0 mt-7 p-0">
         <li

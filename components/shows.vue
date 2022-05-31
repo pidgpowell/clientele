@@ -90,7 +90,7 @@ const sort = (key) => {
 </script>
 
 <template>
-  <div>
+  <div class="block">
     <div class="flex items-center justify-end gap-4">
       <h2 class="!mt-0 mr-auto" v-html="label" />
       <select
