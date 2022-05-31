@@ -171,10 +171,10 @@ const sort = (key) => {
       </thead>
       <tbody class="leading-tight">
         <tr v-for="(show, index) in dates" :key="index">
-          <td class="whitespace-nowrap">
+          <td class="whitespace-nowrap font-light">
             {{ formatDate(show.date, { dateStyle: "long" }) }}
           </td>
-          <td>
+          <td class="font-normal">
             {{ show.venue }}
           </td>
           <td>
