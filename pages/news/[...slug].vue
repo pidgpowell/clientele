@@ -11,31 +11,23 @@ const isNewsIndex = path === "/news";
   <div>
     <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
       <div class="relative">
-        <NuxtLink
-          class="absolute -top-6 text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
-          to="/news"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            aria-hidden="true"
-            role="img"
-            class="flex-shrink-0 w-4 h-4 mr-1 inline text-gray-400"
-            width="1em"
-            height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 24 24"
+        <nav class="absolute -top-7 flex items-center">
+          <icon-home />
+          <NuxtLink
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            to="/"
           >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m11 19l-7-7l7-7m8 14l-7-7l7-7"
-            ></path></svg
-          >Back</NuxtLink
-        >
-        <h2>{{ doc.title }}</h2>
+            Home</NuxtLink
+          >
+          <icon-breadcrumb-divider />
+          <NuxtLink
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            to="/news"
+            >News</NuxtLink
+          >
+        </nav>
+
+        <h2 class="!mt-0">{{ doc.title }}</h2>
         <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
           {{ formatDate(doc.date, { dateStyle: "medium" }) }}
         </p>
@@ -44,7 +36,18 @@ const isNewsIndex = path === "/news";
     </ContentDoc>
 
     <template v-if="isNewsIndex">
-      <h2>News</h2>
+      <div class="relative">
+        <nav class="absolute -top-8 flex items-center">
+          <icon-home />
+          <NuxtLink
+            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline"
+            to="/"
+          >
+            Home</NuxtLink
+          >
+        </nav>
+        <h2 class="!mt-0">News</h2>
+      </div>
       <ul class="list-none m-0 mt-7 p-0">
         <li
           v-for="page in news"

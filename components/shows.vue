@@ -13,6 +13,7 @@ const props = defineProps({
   direction: {
     type: String,
     default: "desc",
+    required: false,
   },
 });
 
@@ -90,11 +91,12 @@ const sort = (key) => {
 
 <template>
   <div>
-    <div class="flex items-center mt-3 justify-end gap-4">
+    <div class="flex items-center justify-end gap-4">
       <h2 class="!mt-0 mr-auto" v-html="label" />
       <select
+        v-if="!upcoming"
         v-model="filterByYear"
-        class="form-select border-gray-300 rounded-sm w-full max-w-[150px]"
+        class="form-select border-gray-300 rounded-sm w-full max-w-[150px] px-2 py-1"
         placeholder="Filter by year"
       >
         <option disabled selected value="">Filter by year</option>
@@ -103,14 +105,18 @@ const sort = (key) => {
         </option>
       </select>
       <input
+        v-if="!upcoming"
         type="search"
-        class="form-input border-gray-300 rounded-sm dark:bg-gray-800 dark:text-white max-w-[150px]"
+        class="form-input border-gray-300 rounded-sm dark:bg-gray-800 dark:text-white max-w-[150px] px-2 py-1"
         v-model="search"
         placeholder="Search"
       />
     </div>
 
-    <table class="table mb-2 mt-7 prose-td:text-md prose-td:lg:text-lg">
+    <table
+      class="table mb-2 mt-7 prose-td:text-md prose-td:lg:text-lg"
+      v-if="dates.length > 0"
+    >
       <thead>
         <tr>
           <th class="flex leading-snug">
@@ -180,5 +186,8 @@ const sort = (key) => {
         </tr>
       </tbody>
     </table>
+    <h4 v-else class="text-center text-gray-500 mb-0 font-light">
+      No shows scheduled.
+    </h4>
   </div>
 </template>
