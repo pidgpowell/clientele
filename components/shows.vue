@@ -174,11 +174,11 @@ const sort = (key) => {
           <td class="whitespace-nowrap font-light">
             {{ formatDate(show.date, { dateStyle: "long" }) }}
           </td>
-          <td class="font-normal flex gap-2 items-center">
+          <td class="font-normal flex flex-col gap-1 items-start">
             {{ show.venue }}
             <a
               v-if="show['ticket-url']"
-              class="bg-white px-2 py-1 border-1 border-black border text-xs no-underline flex items-center rounded hover:bg-black hover:text-white"
+              class="bg-white px-2 py-1 text-center border-1 border-black border text-xs no-underline flex items-center rounded hover:bg-black hover:text-white"
               :href="show['ticket-url']"
               rel="noopener noreferrer"
             >
