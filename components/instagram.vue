@@ -1,5 +1,5 @@
 <template>
-  <a :href="url">
+  <a :href="url" class="outline-none focus-visible:ring-2">
     <svg
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"

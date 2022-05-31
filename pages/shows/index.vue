@@ -87,47 +87,53 @@ const sort = (key) => {
     <table class="table mb-2 mt-7 prose-td:text-md prose-td:lg:text-lg">
       <thead>
         <tr>
-          <th
-            @click="sort('date')"
-            class="flex leading-snug hover:cursor-pointer"
-          >
-            <div class="flex gap-1 items-center">
+          <th class="flex leading-snug">
+            <button
+              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+              @click="sort('date')"
+            >
               Date
               <icon-triangle
                 v-if="currentSort === 'date'"
                 :class="{ 'rotate-180': direction.date }"
               />
-            </div>
+            </button>
           </th>
-          <th @click="sort('venue')" class="leading-snug hover:cursor-pointer">
-            <div class="flex gap-1 items-center">
+          <th class="leading-snug">
+            <button
+              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+              @click="sort('venue')"
+            >
               Venue
               <icon-triangle
                 v-if="currentSort === 'venue'"
                 :class="{ 'rotate-180': direction.venue }"
               />
-            </div>
+            </button>
           </th>
-          <th @click="sort('city')" class="leading-snug hover:cursor-pointer">
-            <div class="flex gap-1 items-center">
+          <th class="leading-snug">
+            <button
+              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+              @click="sort('city')"
+            >
               City
               <icon-triangle
                 v-if="currentSort === 'city'"
                 :class="{ 'rotate-180': direction.city }"
               />
-            </div>
+            </button>
           </th>
-          <th
-            @click="sort('country')"
-            class="leading-snug hover:cursor-pointer"
-          >
-            <div class="flex gap-1 items-center">
-              City
+          <th class="leading-snug">
+            <button
+              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+              @click="sort('country')"
+            >
+              Country
               <icon-triangle
                 v-if="currentSort === 'country'"
                 :class="{ 'rotate-180': direction.country }"
               />
-            </div>
+            </button>
           </th>
         </tr>
       </thead>

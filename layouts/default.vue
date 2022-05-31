@@ -62,19 +62,19 @@ const route = useRoute();
       <nav class="flex gap-4 mb-4">
         <NuxtLink
           to="/news"
-          class="text-gray-800 dark:text-gray-200"
+          class="text-gray-800 dark:text-gray-200 outline-none focus-visible:ring-2"
           :class="{ 'font-bold': route.path.includes('/news') }"
           >News</NuxtLink
         >
         <NuxtLink
           to="/shows"
-          class="text-gray-800 dark:text-gray-200"
+          class="text-gray-800 dark:text-gray-200 outline-none focus-visible:ring-2"
           :class="{ 'font-bold': route.path.includes('/shows') }"
           >Shows</NuxtLink
         >
       </nav>
 
-      <NuxtLink to="/">
+      <NuxtLink to="/" class="outline-none focus-visible:ring-2">
         <h1>
           <svg
             aria-labelledby="title"
@@ -120,7 +120,7 @@ const route = useRoute();
       </div>
 
       <main
-        class="prose dark:prose-invert prose-h2:font-bold prose-h2:mb-0 prose-h2:mt-4 prose-h2:text-3xl prose-p:text-lg -mt-6 md:-mt-12 xl:-mt-[5%] ml-[3.4vw] py-0 sm:py-2 pl-6 md:pl-[3.7vw] border-l sm:border-l-1 border-gray-200 dark:border-gray-800 md:max-w-[59vw]"
+        class="prose dark:prose-invert prose-h2:font-bold prose-h2:mb-0 prose-h2:mt-4 prose-h2:text-3xl prose-p:text-lg prose-a:outline-none focus-visible:prose-a:ring-2 -mt-6 md:-mt-12 xl:-mt-[5%] ml-[3.4vw] py-0 sm:py-2 pl-6 md:pl-[3.7vw] border-l sm:border-l-1 border-gray-200 dark:border-gray-800 md:max-w-[59vw]"
       >
         <slot />
       </main>
