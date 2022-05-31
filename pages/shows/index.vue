@@ -101,6 +101,7 @@ const sort = (key) => {
           </th>
           <th @click="sort('venue')" class="leading-snug hover:cursor-pointer">
             <div class="flex gap-1 items-center">
+              Venue
               <icon-triangle
                 v-if="currentSort === 'venue'"
                 :class="{ 'rotate-180': direction.venue }"
