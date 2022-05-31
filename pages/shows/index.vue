@@ -22,7 +22,7 @@ const years = computed(() => {
           return formatDate(item.date, options);
         })
     ),
-  ];
+  ].sort(byNumber({ desc: true }));
 });
 
 const dates = computed(() => {
@@ -72,7 +72,7 @@ const sort = (key) => {
         placeholder="Filter by year"
       >
         <option disabled selected value="">Filter by year</option>
-        <option v-for="year in years" :value="year">
+        <option v-for="(year, index) in years" :value="year" :key="index">
           {{ year }}
         </option>
       </select>
@@ -89,7 +89,7 @@ const sort = (key) => {
         <tr>
           <th class="flex leading-snug">
             <button
-              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+              class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2 no-wrap"
               @click="sort('date')"
             >
               Date
