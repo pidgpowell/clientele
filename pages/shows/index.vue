@@ -1,9 +1,11 @@
 <script setup></script>
 
 <template>
-  <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
+  <div>
+    <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
 
-  <hr />
+    <hr />
 
-  <Shows label="Before" :upcoming="false" />
+    <Shows label="Before" :upcoming="false" />
+  </div>
 </template>
