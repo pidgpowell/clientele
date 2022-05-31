@@ -172,7 +172,7 @@ const sort = (key) => {
       <tbody class="leading-tight">
         <tr v-for="(show, index) in dates" :key="index">
           <td class="whitespace-nowrap font-light">
-            {{ formatDate(show.date, { dateStyle: "long" }) }}
+            {{ formatDate(show.date, { dateStyle: "medium" }) }}
           </td>
           <td class="font-normal flex flex-col gap-1 items-start">
             {{ show.venue }}
@@ -199,3 +199,9 @@ const sort = (key) => {
     </h4>
   </div>
 </template>
+
+<style>
+td {
+  word-break: break-all;
+}
+</style>
