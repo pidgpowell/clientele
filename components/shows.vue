@@ -43,6 +43,12 @@ const years = computed(() => {
 const dates = computed(() => {
   return (
     getRawShowsData.body
+      .filter(item => {
+        if (filterByYear.value) {
+          return formatDate(item.date, { year: "numeric" }) === filterByYear.value;
+        }
+        return item;
+      })
       .filter((item) => {
         // upcoming shows vs old shows
         if (props.upcoming !== undefined) {
