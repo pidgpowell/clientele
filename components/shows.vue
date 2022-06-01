@@ -91,30 +91,30 @@ const sort = (key) => {
 
 <template>
   <div class="block">
-    <div class="flex items-center justify-end gap-4">
-      <h2 class="!mt-0 mr-auto" v-html="label" />
-      <select
-        v-if="!upcoming"
-        v-model="filterByYear"
-        class="form-select border-gray-300 rounded-sm w-full max-w-[150px] px-2 py-1"
-        placeholder="Filter by year"
-      >
-        <option disabled selected value="">Filter by year</option>
-        <option v-for="(year, index) in years" :value="year" :key="index">
-          {{ year }}
-        </option>
-      </select>
-      <input
-        v-if="!upcoming"
-        type="search"
-        class="form-input border-gray-300 rounded-sm dark:bg-gray-800 dark:text-white max-w-[150px] px-2 py-1"
-        v-model="search"
-        placeholder="Search"
-      />
+    <div class="flex flex-col xs:flex-row xs:items-center justify-end gap-2">
+      <h2 class="!mt-0 mr-auto !mb-0" v-html="label" />
+      <div class="flex gap-2" v-if="!upcoming">
+        <select
+          v-model="filterByYear"
+          class="form-select border-gray-300 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+        >
+          <option disabled selected value="">Year</option>
+          <option value="">All Years</option>
+          <option v-for="(year, index) in years" :value="year" :key="index">
+            {{ year }}
+          </option>
+        </select>
+        <input
+          type="search"
+          class="form-input border-gray-300 rounded-sm dark:bg-gray-800 dark:text-white max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+          v-model="search"
+          placeholder="Search"
+        />
+      </div>
     </div>
 
     <table
-      class="table mb-2 mt-7 prose-td:text-md prose-td:lg:text-lg"
+      class="table mb-2 mt-7 prose-td:text-md prose-td:text-sm prose-td:lg:text-lg"
       v-if="dates.length > 0"
     >
       <thead>
@@ -172,23 +172,28 @@ const sort = (key) => {
       <tbody class="leading-tight">
         <tr v-for="(show, index) in dates" :key="index">
           <td class="whitespace-nowrap font-light">
-            {{ formatDate(show.date, { dateStyle: "medium" }) }}
+            {{ formatDate(show.date, { month: "short", day: "numeric" })
+            }}<span class="block sm:hidden"></span
+            ><span class="hidden sm:inline-block">, </span>
+            {{ formatDate(show.date, { year: "numeric" }) }}
           </td>
-          <td class="font-normal flex flex-col gap-1 items-start">
+          <td
+            class="font-normal flex flex-col items-start leading-0 break-all md:break-normal"
+          >
             {{ show.venue }}
             <a
               v-if="show['ticket-url']"
-              class="bg-white px-2 py-1 text-center border-1 border-black border text-xs no-underline flex items-center rounded hover:bg-black hover:text-white"
+              class="text-xs text-blue underline flex items-center rounded"
               :href="show['ticket-url']"
               rel="noopener noreferrer"
             >
               Buy Tickets
             </a>
           </td>
-          <td>
+          <td class="break-all md:break-normal">
             {{ show.city }}
           </td>
-          <td>
+          <td class="break-all md:break-normal">
             {{ show.country }}
           </td>
         </tr>
@@ -199,9 +204,3 @@ const sort = (key) => {
     </h4>
   </div>
 </template>
-
-<style>
-td {
-  word-break: break-all;
-}
-</style>
