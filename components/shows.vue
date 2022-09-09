@@ -183,15 +183,13 @@ const sort = (key) => {
             ><span class="hidden sm:inline-block">, </span>
             {{ formatDate(show.date, { year: "numeric" }) }}
           </td>
-          <td
-            class="font-normal flex flex-col items-start leading-0 break-all md:break-normal"
-          >
-            {{ show.venue }}
+          <td class="font-normal flex flex-col items-start leading-0 break-all md:break-normal">
+            <div class="text-base font-medium leading-tight text-gray-800">{{ show.venue }}</div>
             <div class="flex gap-2">
-              <span v-if="show.info" v-html="show.info" class="text-sm" />
+              <span v-if="show.info" v-html="show.info" class="text-sm leading-tight text-gray-700" />
               <a
                 v-if="show['ticket-url']"
-                class="text-xs text-blue underline flex items-center rounded"
+                class="text-xs underline"
                 :href="show['ticket-url']"
                 rel="noopener noreferrer"
               >
