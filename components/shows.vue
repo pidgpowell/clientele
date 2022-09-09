@@ -187,14 +187,17 @@ const sort = (key) => {
             class="font-normal flex flex-col items-start leading-0 break-all md:break-normal"
           >
             {{ show.venue }}
-            <a
-              v-if="show['ticket-url']"
-              class="text-xs text-blue underline flex items-center rounded"
-              :href="show['ticket-url']"
-              rel="noopener noreferrer"
-            >
-              Buy Tickets
-            </a>
+            <div class="flex gap-2">
+              <span v-if="show.info" v-html="show.info" class="text-sm" />
+              <a
+                v-if="show['ticket-url']"
+                class="text-xs text-blue underline flex items-center rounded"
+                :href="show['ticket-url']"
+                rel="noopener noreferrer"
+              >
+                Buy Tickets
+              </a>
+            </div>
           </td>
           <td class="break-all md:break-normal">
             {{ show.city }}
