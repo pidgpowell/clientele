@@ -1,5 +1,5 @@
 <script setup>
-const latestPosts = await queryContent("news").sort({ date: -1 }).findOne();
+const { data } = await useAsyncData('news-home', () => queryContent('news').sort({ date: -1 }).limit(1).find());
 const formatDate = useDateFormat();
 const excerpt = true;
 </script>
@@ -9,21 +9,24 @@ const excerpt = true;
     <nav class="absolute -top-2 flex items-center text-xs text-gray-500">
       <icon-home /> Home
     </nav>
-    <h2>{{ latestPosts.title }}</h2>
-    <p class="text-gray-500 mb-0 !text-sm">
-      {{ formatDate(latestPosts.date, { dateStyle: "medium" }) }}
-    </p>
-    <MarkdownRenderer
-      :value="latestPosts"
-      :excerpt="excerpt"
-      class="prose-table:max-w-sm"
-    />
-    <NuxtLink
-      v-if="excerpt && latestPosts.excerpt"
-      :to="latestPosts._path"
-      class="border-1 px-4 py-3 border-black border-solid border rounded-md no-underline hover:bg-gray-100"
-      >Read more</NuxtLink
-    >
+
+    <div v-for="post in data" :key="post._id">
+      <h2>{{ post.title }}</h2>
+      <p class="text-gray-500 mb-0 !text-sm">
+        {{ formatDate(post.date, { dateStyle: "medium" }) }}
+      </p>
+      <ContentRenderer
+        :value="post"
+        :excerpt="excerpt"
+        class="prose-table:max-w-sm"
+      />
+      <NuxtLink
+        v-if="excerpt && post.excerpt"
+        :to="post._path"
+        class="border-1 px-4 py-3 border-black border-solid border rounded-md no-underline hover:bg-gray-100"
+        >Read more</NuxtLink
+      >
+    </div>
 
     <hr />
 

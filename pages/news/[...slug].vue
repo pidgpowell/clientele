@@ -31,7 +31,7 @@ const isNewsIndex = path === "/news";
         <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
           {{ formatDate(doc.date, { dateStyle: "medium" }) }}
         </p>
-        <MarkdownRenderer :value="doc" />
+        <ContentRenderer :value="doc" />
       </div>
     </ContentDoc>
 
