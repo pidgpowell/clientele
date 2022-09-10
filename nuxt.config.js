@@ -2,9 +2,14 @@ import { defineNuxtConfig } from "nuxt";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@nuxt/content", "@nuxtjs/tailwindcss"],
+  ssr: true,
 
-  generate: {
-    exclude: ["/index.vue"],
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true
+    }
   },
+
+  modules: ["@nuxt/content", "@nuxtjs/tailwindcss"],
 });
