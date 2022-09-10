@@ -184,7 +184,7 @@ const sort = (key) => {
             {{ formatDate(show.date, { year: "numeric" }) }}
           </td>
           <td class="font-normal flex flex-col items-start leading-0 break-all md:break-normal">
-            <div class="text-base font-medium leading-tight text-gray-800">{{ show.venue }}</div>
+            <div class="text-base font-medium leading-tight text-gray-900">{{ show.venue }}</div>
             <div class="flex gap-2">
               <span v-if="show.info" v-html="show.info" class="text-sm leading-tight text-gray-700" />
               <a
