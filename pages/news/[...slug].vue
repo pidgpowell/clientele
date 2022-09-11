@@ -27,7 +27,7 @@ const isNewsIndex = path === "/news";
           >
         </nav>
 
-        <h2>{{ doc.title }}</h2>
+        <h2 class="!font-medium">{{ doc.title }}</h2>
         <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
           {{ formatDate(doc.date, { dateStyle: "medium" }) }}
         </p>

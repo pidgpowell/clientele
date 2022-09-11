@@ -11,15 +11,25 @@ const excerpt = true;
     </nav>
 
     <div v-for="post in data" :key="post._id">
-      <h2>{{ post.title }}</h2>
+      <h2>
+        <NuxtLink
+          :to="post._path"
+          class="no-underline hover:underline"
+        >
+          {{ post.title }}
+        </NuxtLink>
+      </h2>
+
       <p class="text-gray-500 mb-0 !text-sm">
         {{ formatDate(post.date, { dateStyle: "medium" }) }}
       </p>
+
       <ContentRenderer
         :value="post"
         :excerpt="excerpt"
         class="prose-table:max-w-sm"
       />
+
       <NuxtLink
         v-if="excerpt && post.excerpt"
         :to="post._path"
