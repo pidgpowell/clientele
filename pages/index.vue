@@ -1,5 +1,9 @@
 <script setup>
-const { data } = await useAsyncData('news-home', () => queryContent('news').sort({ date: -1 }).limit(1).find());
+const { data } = await useAsyncData('news-home', () => queryContent('news')
+  .where({ date: { $lt: new Date() } })
+  .sort({ date: -1 })
+  .limit(1)
+  .find());
 const formatDate = useDateFormat();
 const excerpt = true;
 </script>
