@@ -1,41 +1,67 @@
 <script setup>
-const { path } = useRoute();
+const { path, params } = useRoute();
 const formatDate = useDateFormat();
-const news = await queryContent("news").sort({ date: -1 }).limit(3).find();
 
-const isNewsPage = path.includes("/news/");
-const isNewsIndex = path === "/news";
+const isNewsPage = path.includes("/news/") && params !== '';
+const isNewsIndex = path === "/news" && params?.slug === '';
+
+let news, query;
+if (isNewsIndex) {
+  news = await queryContent("news")
+    .where({ date: { $lt: new Date() } })
+    .sort({ date: -1 })
+    .limit(3)
+    .find();
+} else {
+  query = {
+    path: '/news',
+    where: {
+      date: {
+        $lt: new Date()
+      }
+    },
+    limit: 3,
+    sort: { date: -1 }
+  };
+}
 </script>
 
 <template>
   <div>
-    <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
-      <div class="relative pt-2">
-        <nav class="absolute -top-2 flex items-center">
-          <icon-home />
-          <NuxtLink
-            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
-            to="/"
-          >
-            Home</NuxtLink
-          >
-          <icon-breadcrumb-divider />
-          <NuxtLink
-            class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
-            to="/news"
-            >News</NuxtLink
-          >
-        </nav>
+    <template v-if="isNewsPage">
+      <ContentDoc :query="query">
+        <template v-slot="{ doc }">
+          <div class="relative pt-2">
+            <nav class="absolute -top-2 flex items-center">
+              <icon-home />
+              <NuxtLink
+                class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
+                to="/"
+              >
+                Home</NuxtLink
+              >
+              <icon-breadcrumb-divider />
+              <NuxtLink
+                class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
+                to="/news"
+                >News</NuxtLink
+              >
+            </nav>
 
-        <h2 class="!font-medium">{{ doc.title }}</h2>
-        <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
-          {{ formatDate(doc.date, { dateStyle: "medium" }) }}
-        </p>
-        <ContentRenderer :value="doc" />
-      </div>
-    </ContentDoc>
+            <h2 class="!font-medium">{{ doc.title }}</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
+              {{ formatDate(doc.date, { dateStyle: "medium" }) }}
+            </p>
+            <ContentRenderer :value="doc" />
+          </div>
+        </template>
+        <template #not-found >
+          <p>No articles found.</p>
+        </template>
+      </ContentDoc>
+    </template>
 
-    <template v-if="isNewsIndex">
+    <template v-else>
       <div class="relative pt-2">
         <nav class="absolute -top-2 flex items-center">
           <icon-home />
