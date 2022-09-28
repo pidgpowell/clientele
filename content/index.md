@@ -8,7 +8,7 @@ date: 2022-05-09 09:00
 
 NEWS: a beautiful, limited edition book of Clientele lyrics, sketches and fragments is available now!
 
-[Email](mailto:Julian@voicesinalane.co.uk) to reserve a copy
+[Email](mailto:theclientele@yahoo.com) to reserve a copy
 
 | Location | Total Price |
 |---------|--------|
