@@ -4,7 +4,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "regen": "npm run generate && php -S localhost:3002 -t .output/public"
   },
   "devDependencies": {
     "@nuxt/content": "^2.1.1",
