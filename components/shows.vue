@@ -40,6 +40,12 @@ const years = computed(() => {
   ].sort(byNumber({ desc: true }));
 });
 
+function isShowInFuture(date) {
+  let showDate = new Date(date).toISOString().substr(0, 10);
+  let today = new Date().toISOString().substr(0, 10);
+  return showDate >= today;
+}
+
 const dates = computed(() => {
   return (
     getRawShowsData.body
@@ -53,9 +59,9 @@ const dates = computed(() => {
         // upcoming shows vs old shows
         if (props.upcoming !== undefined) {
           if (props.upcoming === true) {
-            return new Date(item.date) >= new Date();
+            return isShowInFuture(item.date);
           } else {
-            return new Date(item.date) < new Date();
+            return !isShowInFuture(item.date);
           }
         } else {
           return true;
