@@ -8,9 +8,9 @@ date: 2022-05-09
 
 NEWS: a beautiful, limited edition book of Clientele lyrics, sketches and fragments is available now!
 
-[Email](mailto:theclientele@yahoo.com) to reserve a copy
-
 <!--more-->
+
+[Email](mailto:theclientele@yahoo.com) to reserve a copy
 
 | Location | Total Price |
 |---------|--------|
