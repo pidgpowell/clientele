@@ -4,11 +4,17 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "regen": "npm run generate && php -S localhost:3002 -t .output/public"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.0.0",
-    "@nuxtjs/tailwindcss": "^5.1.2",
-    "nuxt": "3.0.0-rc.3"
+    "@nuxt/content": "^2.1.1",
+    "@tailwindcss/typography": "^0.5.7",
+    "nuxt": "^3.0.0-rc.11"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^5.3.3",
+    "@tailwindcss/forms": "^0.5.3",
+    "sort-es": "^1.5.2"
   }
 }

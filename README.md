@@ -1,3 +1,9 @@
+# The Clientele web site
+
+A Nuxt-based site using the @nuxt/content module to create news pages with markdown files and a shows page from a .csv file of data
+
+See below for local development steps:
+
 # Nuxt 3 Minimal Starter
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
@@ -39,4 +45,4 @@ Locally preview production build:
 npm run preview
 ```
 
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
+Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.

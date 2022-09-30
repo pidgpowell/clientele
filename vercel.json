@@ -1,15 +1,7 @@
 {
     "redirects": [
         {
-            "source": "/news/:path*",
-            "destination": "/"
-        },
-        {
             "source": "/discography",
-            "destination": "/"
-        },
-        {
-            "source": "/shows/:path*",
             "destination": "/"
         },
         {
