@@ -40,12 +40,6 @@ const years = computed(() => {
   ].sort(byNumber({ desc: true }));
 });
 
-function isShowInFuture(date) {
-  let showDate = new Date(date).toISOString().substr(0, 10);
-  let today = new Date().toISOString().substr(0, 10);
-  return showDate >= today;
-}
-
 const dates = computed(() => {
   return (
     getRawShowsData.body
@@ -59,9 +53,9 @@ const dates = computed(() => {
         // upcoming shows vs old shows
         if (props.upcoming !== undefined) {
           if (props.upcoming === true) {
-            return isShowInFuture(item.date);
+            return new Date(item.date) >= new Date();
           } else {
-            return !isShowInFuture(item.date);
+            return new Date(item.date) < new Date();
           }
         } else {
           return true;
@@ -108,7 +102,7 @@ const sort = (key) => {
       <div class="flex gap-2" v-if="!upcoming">
         <select
           v-model="filterByYear"
-          class="form-select border-gray-300 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+          class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
         >
           <option disabled selected value="">Year</option>
           <option value="">All Years</option>
@@ -118,7 +112,7 @@ const sort = (key) => {
         </select>
         <input
           type="search"
-          class="form-input border-gray-300 rounded-sm dark:bg-gray-800 dark:text-white max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+          class="form-input border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm dark:text-white max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
           v-model="search"
           placeholder="Search"
         />
@@ -190,9 +184,9 @@ const sort = (key) => {
             {{ formatDate(show.date, { year: "numeric" }) }}
           </td>
           <td class="font-normal flex flex-col items-start leading-0 break-all md:break-normal">
-            <div class="text-lg font-medium leading-tight text-gray-700">{{ show.venue }}</div>
+            <div class="text-lg font-medium leading-tight text-gray-700 dark:text-gray-200">{{ show.venue }}</div>
             <div class="flex gap-2">
-              <span v-if="show.info" v-html="show.info" class="text-sm leading-tight text-gray-700" />
+              <span v-if="show.info" v-html="show.info" class="text-sm leading-tight text-gray-700 dark:text-gray-500" />
               <a
                 v-if="show['ticket-url']"
                 class="text-xs underline"
@@ -212,7 +206,7 @@ const sort = (key) => {
         </tr>
       </tbody>
     </table>
-    <h4 v-else class="text-center text-gray-500 mb-0 font-light">
+    <h4 v-else class="text-gray-500 font-light mb-6">
       No shows scheduled.
     </h4>
   </div>

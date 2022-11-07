@@ -10,7 +10,7 @@ NEWS: a beautiful, limited edition book of Clientele lyrics, sketches and fragme
 
 <!--more-->
 
-[Email](mailto:theclientele@yahoo.com) to reserve a copy
+[Email](mailto:theclientele@yahoo.com) to reserve a copy.
 
 | Location | Total Price |
 |---------|--------|

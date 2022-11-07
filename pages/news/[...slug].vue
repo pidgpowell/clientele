@@ -1,39 +1,19 @@
 <script setup>
-const { path, params } = useRoute();
+const { path } = useRoute();
 const formatDate = useDateFormat();
+const news = await queryContent("news").sort({ date: -1 }).limit(3).find();
 
-const isNewsPage = params.slug !== '';
-const isNewsIndex = params?.slug === '';
-
-let news, query;
-const today = new Date().toISOString().slice(0, 10);
-if (isNewsIndex) {
-  news = await queryContent("news")
-    .where({ date: { $lte: today } })
-    .sort({ date: -1 })
-    .limit(3)
-    .find();
-} else {
-  query = {
-    path: '/news',
-    where: {
-      date: {
-        $lte: today
-      }
-    },
-    limit: 1,
-    sort: { date: -1 }
-  };
-}
+const isNewsPage = path.includes("/news/");
+const isNewsIndex = path === "/news";
 </script>
 
 <template>
   <div>
-    <template v-if="isNewsPage">
+    <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
       <div class="relative pt-2">
         <nav class="absolute -top-2 flex items-center">
           <icon-home />
-            <NuxtLink
+          <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/"
           >
@@ -47,22 +27,15 @@ if (isNewsIndex) {
           >
         </nav>
 
-        <ContentDoc :query="query">
-          <template v-slot="{ doc }">
-            <h2 class="!font-medium">{{ doc.title }}</h2>
-            <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
-              {{ formatDate(doc.date, { dateStyle: "medium" }) }}
-            </p>
-            <ContentRenderer :value="doc" />
-          </template>
-          <template #not-found>
-            <p>No articles found.</p>
-          </template>
-        </ContentDoc>
+        <h2 class="!font-medium">{{ doc.title }}</h2>
+        <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
+          {{ formatDate(doc.date, { dateStyle: "medium" }) }}
+        </p>
+        <ContentRenderer :value="doc" />
       </div>
-    </template>
+    </ContentDoc>
 
-    <template v-else>
+    <template v-if="isNewsIndex">
       <div class="relative pt-2">
         <nav class="absolute -top-2 flex items-center">
           <icon-home />

@@ -1,9 +1,5 @@
 <script setup>
-const { data } = await useAsyncData('news-home', () => queryContent('news')
-  .where({ date: { $lt: new Date() } })
-  .sort({ date: -1 })
-  .limit(1)
-  .find());
+const { data } = await useAsyncData('news-home', () => queryContent('news').sort({ date: -1 }).limit(1).find());
 const formatDate = useDateFormat();
 const excerpt = true;
 </script>
@@ -24,7 +20,7 @@ const excerpt = true;
         </NuxtLink>
       </h2>
 
-      <p class="text-gray-500 mb-0 !text-sm">
+      <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
         {{ formatDate(post.date, { dateStyle: "medium" }) }}
       </p>
 
@@ -37,9 +33,10 @@ const excerpt = true;
       <NuxtLink
         v-if="excerpt && post.excerpt"
         :to="post._path"
-        class="border-1 px-4 py-3 border-black border-solid border rounded-md no-underline hover:bg-gray-100"
-        >Read more</NuxtLink
+        class="border-1 px-4 py-3 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
       >
+        Read more
+      </NuxtLink>
     </div>
 
     <hr />
@@ -48,8 +45,9 @@ const excerpt = true;
 
     <NuxtLink
       to="/shows"
-      class="inline-block mt-3 border-1 px-4 py-3 border-black border-solid border rounded-md no-underline hover:bg-gray-100"
-      >See all shows</NuxtLink
+      class="border-1 px-4 py-3 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
     >
+      See all shows
+    </NuxtLink>
   </div>
 </template>
