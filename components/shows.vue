@@ -206,8 +206,8 @@ const sort = (key) => {
         </tr>
       </tbody>
     </table>
-    <h4 v-else class="text-gray-500 font-light mb-6">
+    <p v-else class="text-gray-500 font-light mb-6">
       No shows scheduled.
-    </h4>
+    </p>
   </div>
 </template>
