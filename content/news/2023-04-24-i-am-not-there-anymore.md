@@ -3,7 +3,7 @@ title: 'The Clientele announce new album ''I Am Not There Anymore'' and take up 
 date: 2023-04-24
 ---
 
-<img src="https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg" alt="Photo of the members of the Clientele wearing armour" />
+<img src="https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg" width="1200" height="465" alt="Photo of the members of the Clientele wearing armour" />
 
 The Clientele announce their new album, I Am Not There Anymore, out July 28 on Merge, and premiere the first single/video, “Blue Over Blue.” <a href="https://lnk.to/IAmNotThereAnymore">Listen to and share</a> “Blue Over Blue,” and pre-order <em>I Am Not There Anymore</em> on CD, LP, and black in opaque red Peak Vinyl in the <a href="https://www.mergerecords.com/product/i_am_not_there_anymore">Merge store</a>.
 
