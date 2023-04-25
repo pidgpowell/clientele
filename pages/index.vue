@@ -6,7 +6,7 @@ const excerpt = true;
 
 <template>
   <div class="relative pt-2">
-    <nav class="absolute -top-2 flex items-center text-xs text-gray-500">
+    <nav class="absolute -top-2 flex items-center text-xs text-gray-500" aria-label="breadcrumbs">
       <icon-home /> Home
     </nav>
 
@@ -16,7 +16,7 @@ const excerpt = true;
           :to="post._path"
           class="no-underline hover:underline"
         >
-          {{ post.title }}
+        <span v-html="post.title" />
         </NuxtLink>
       </h2>
 
