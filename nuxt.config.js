@@ -3,4 +3,10 @@ export default defineNuxtConfig({
   ssr: true,
 
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss"],
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['lite-youtube'].includes(tag),
+    },
+  }
 });
