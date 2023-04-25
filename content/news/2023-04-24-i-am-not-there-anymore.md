@@ -9,9 +9,9 @@ The Clientele announce their new album, I Am Not There Anymore, out July 28 on M
 
 <!--more-->
 
-::EmbedYouTube{videoId="A-YpCcy05OA"}
+<!-- ::EmbedYouTube{videoId="A-YpCcy05OA"}
 Test
-::
+:: -->
 
 <em>I Am Not There Anymore</em> follows 2017’s <em>Music for the Age of Miracles</em> (which arrived after a seven-year hiatus for the band), with new recording sessions beginning in 2019 and continuing piecemeal until 2022—in part due to the pandemic and also because the band wanted the space to experiment. “We’d always been interested in music other than guitar music, like for donkey’s years,” vocalist/lyricist/guitarist Alasdair MacLean says. This time out, he—alongside bassist James Hornsey and drummer Mark Keen—incorporated elements of post-bop jazz, contemporary classical and electronic music. According to MacLean, “None of those things had been able to find their way into our sound other than in the most passing way, in the faintest imprint.”
 
