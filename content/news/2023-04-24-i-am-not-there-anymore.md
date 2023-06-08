@@ -1,17 +1,16 @@
 ---
-title: 'The Clientele announce new album ''I Am Not There Anymore'' and take up arms in "Blue Over Blue" video'
+title: 'The Clientele announce new album ''<em>I Am Not There Anymore</em>'' and take up arms in "Blue Over Blue" video'
 date: 2023-04-24
 ---
 
 <img src="https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg" width="1200" height="465" alt="Photo of the members of the Clientele wearing armour" />
 
-The Clientele announce their new album, I Am Not There Anymore, out July 28 on Merge, and premiere the first single/video, “Blue Over Blue.” <a href="https://lnk.to/IAmNotThereAnymore">Listen to and share</a> “Blue Over Blue,” and pre-order <em>I Am Not There Anymore</em> on CD, LP, and black in opaque red Peak Vinyl in the <a href="https://www.mergerecords.com/product/i_am_not_there_anymore">Merge store</a>.
+The Clientele announce their new album, <em>I Am Not There Anymore</em>, out July 28 on Merge, and premiere the first single/video, “Blue Over Blue.” <a href="https://lnk.to/IAmNotThereAnymore">Listen to and share</a> “Blue Over Blue,” and pre-order <em>I Am Not There Anymore</em> on CD, LP, and black in opaque red Peak Vinyl in the <a href="https://www.mergerecords.com/product/i_am_not_there_anymore">Merge store</a>.
 
 <!--more-->
 
-<!-- ::EmbedYouTube{videoId="A-YpCcy05OA"}
-Test
-:: -->
+::EmbedYouTube{videoId="A-YpCcy05OA"}
+::
 
 <em>I Am Not There Anymore</em> follows 2017’s <em>Music for the Age of Miracles</em> (which arrived after a seven-year hiatus for the band), with new recording sessions beginning in 2019 and continuing piecemeal until 2022—in part due to the pandemic and also because the band wanted the space to experiment. “We’d always been interested in music other than guitar music, like for donkey’s years,” vocalist/lyricist/guitarist Alasdair MacLean says. This time out, he—alongside bassist James Hornsey and drummer Mark Keen—incorporated elements of post-bop jazz, contemporary classical and electronic music. According to MacLean, “None of those things had been able to find their way into our sound other than in the most passing way, in the faintest imprint.”
 

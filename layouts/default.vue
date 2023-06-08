@@ -59,7 +59,7 @@ const route = useRoute();
     class="pt-2 pb-4 px-4 sm:p-16 sm:pt-10 sm:pb-4 grid gap-8 h-screen mb-2 font-body"
   >
     <div class="flex flex-col gap-4 pr-1 sm:pr-0">
-      <nav class="flex gap-4 mb-4">
+      <nav class="flex gap-4 mb-4" role="navigation">
         <NuxtLink
           to="/news"
           class="text-gray-800 dark:text-gray-200 outline-none focus-visible:ring-2"

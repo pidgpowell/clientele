@@ -11,7 +11,7 @@ const isNewsIndex = path === "/news";
   <div>
     <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
       <div class="relative pt-2">
-        <nav class="absolute -top-2 flex items-center">
+        <nav class="absolute -top-2 flex items-center" aria-label="breadcrumbs">
           <icon-home />
           <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
@@ -27,7 +27,7 @@ const isNewsIndex = path === "/news";
           >
         </nav>
 
-        <h2 class="!font-medium">{{ doc.title }}</h2>
+        <h2 class="!font-medium"><span v-html="doc.title" /></h2>
         <p class="text-gray-500 dark:text-gray-400 mb-0 !text-sm">
           {{ formatDate(doc.date, { dateStyle: "medium" }) }}
         </p>
@@ -37,7 +37,7 @@ const isNewsIndex = path === "/news";
 
     <template v-if="isNewsIndex">
       <div class="relative pt-2">
-        <nav class="absolute -top-2 flex items-center">
+        <nav class="absolute -top-2 flex items-center" aria-label="breadcrumbs">
           <icon-home />
           <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
@@ -54,9 +54,7 @@ const isNewsIndex = path === "/news";
           :key="page._path"
           class="leading-tight mb-5 ml-0 pl-0"
         >
-          <NuxtLink :to="page._path" class="text-lg -mb-1">{{
-            page.title
-          }}</NuxtLink>
+          <NuxtLink :to="page._path" class="text-lg -mb-1"><span v-html="page.title" /></NuxtLink>
           <small class="text-sm block mt-0">
             {{ formatDate(page.date, { dateStyle: "medium" }) }}
           </small>
