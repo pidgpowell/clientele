@@ -1,4 +1,6 @@
-global.HTMLElement = typeof window === 'undefined' ? Object : window.HTMLElement
+if (typeof global !== 'undefined') {
+  global.HTMLElement = typeof window === 'undefined' ? Object : window.HTMLElement
+}
 
 /* eslint-disable */
 export class LiteYTEmbed extends HTMLElement {

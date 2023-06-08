@@ -9,11 +9,7 @@
 </template>
 
 <script>
-import '@justinribeiro/lite-youtube';
-
-// if ( process.client ) {
-//   import( '@/components/vendor/lite-youtube.js' );
-// }
+import( '@/components/vendor/lite-youtube.js' );
 
 export default {
   name: 'EmbedYouTube',
