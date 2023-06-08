@@ -98,7 +98,7 @@ const sort = (key) => {
 <template>
   <div class="block">
     <div class="flex flex-col xs:flex-row xs:items-center justify-end gap-2">
-      <h2 class="!mt-0 mr-auto !mb-0" v-html="label" />
+      <h2 class="!mt-0 mr-auto !mb-0" v-html="label" :id="`table-label-${upcoming ? 'upcoming' : 'old'}`" />
       <div class="flex gap-2" v-if="!upcoming">
         <select
           v-model="filterByYear"
@@ -122,6 +122,7 @@ const sort = (key) => {
     <table
       class="table mb-2 mt-7 prose-td:text-md prose-td:text-sm prose-td:lg:text-lg"
       v-if="dates.length > 0"
+      :aria-labelledby="`table-label-${upcoming ? 'upcoming' : 'old'}`"
     >
       <thead>
         <tr>
@@ -131,7 +132,7 @@ const sort = (key) => {
               @click="sort('date')"
             >
               Date
-              <icon-triangle
+              <IconTriangle
                 v-if="currentSort === 'date'"
                 :class="{ 'rotate-180': direction.date }"
               />
@@ -143,7 +144,7 @@ const sort = (key) => {
               @click="sort('venue')"
             >
               Venue
-              <icon-triangle
+              <IconTriangle
                 v-if="currentSort === 'venue'"
                 :class="{ 'rotate-180': direction.venue }"
               />
@@ -155,7 +156,7 @@ const sort = (key) => {
               @click="sort('city')"
             >
               City
-              <icon-triangle
+              <IconTriangle
                 v-if="currentSort === 'city'"
                 :class="{ 'rotate-180': direction.city }"
               />
@@ -167,7 +168,7 @@ const sort = (key) => {
               @click="sort('country')"
             >
               Country
-              <icon-triangle
+              <IconTriangle
                 v-if="currentSort === 'country'"
                 :class="{ 'rotate-180': direction.country }"
               />
