@@ -266,4 +266,6 @@ src="https://www.youtube${wantsNoCookie}.com/embed/${embedTarget}autoplay=${auto
   }
 }
 LiteYTEmbed.isPreconnected = false;
-customElements.define('lite-youtube', LiteYTEmbed);
+if (typeof window !== 'undefined' && 'customElements' in window) {
+  customElements.define('lite-youtube', LiteYTEmbed);
+}
