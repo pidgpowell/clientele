@@ -12,14 +12,14 @@ const isNewsIndex = path === "/news";
     <ContentDoc v-if="isNewsPage" :path="path" v-slot="{ doc }">
       <div class="relative pt-2">
         <nav class="absolute -top-2 flex items-center" aria-label="breadcrumbs">
-          <icon-home />
+          <IconHome />
           <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/"
           >
             Home</NuxtLink
           >
-          <icon-breadcrumb-divider />
+          <IconBreadcrumbDivider />
           <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/news"
@@ -38,7 +38,7 @@ const isNewsIndex = path === "/news";
     <template v-if="isNewsIndex">
       <div class="relative pt-2">
         <nav class="absolute -top-2 flex items-center" aria-label="breadcrumbs">
-          <icon-home />
+          <IconHome />
           <NuxtLink
             class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
             to="/"
