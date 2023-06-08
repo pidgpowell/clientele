@@ -7,7 +7,9 @@ const primaryHover = "#000";
 const formatDate = useDateFormat();
 
 useHead({
-  title: "The Clientele",
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - The Clientele` : 'The Clientele';
+  },
   bodyAttrs: {
     class: "bg-white dark:bg-gray-900 antialiased",
   },

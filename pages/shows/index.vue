@@ -1,3 +1,9 @@
+<script setup>
+useHead({
+ title: 'Shows'
+});
+</script>
+
 <template>
   <div>
     <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
