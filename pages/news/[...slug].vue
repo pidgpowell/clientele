@@ -5,6 +5,10 @@ const news = await queryContent("news").sort({ date: -1 }).limit(3).find();
 
 const isNewsPage = path.includes("/news/");
 const isNewsIndex = path === "/news";
+
+useHead({
+ title: 'News'
+});
 </script>
 
 <template>
