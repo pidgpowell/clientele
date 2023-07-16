@@ -4,7 +4,7 @@ description: 'Home page content'
 date: 2022-05-09
 ---
 
-![Cover of book](https://pbs.twimg.com/media/FSTtrQ5XsAAupvk?format=webp){width='300' width='402' loading='lazy'}
+![Cover of book](https://pbs.twimg.com/media/FSTtrQ5XsAAupvk?format=webp){width='300' height='402' loading='lazy'}
 
 NEWS: a beautiful, limited edition book of Clientele lyrics, sketches and fragments is available now!
 
