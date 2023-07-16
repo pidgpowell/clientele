@@ -1,5 +1,7 @@
 <script setup>
-import { stripHtml } from "string-strip-html";
+function stripHtml(str) {
+  return str.replace(/<[^>]*>/g, '');
+}
 
 const iconWidth = "100%";
 const primaryDark = "#333";
@@ -10,7 +12,7 @@ const formatDate = useDateFormat();
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${stripHtml(titleChunk).result} - The Clientele` : 'The Clientele';
+    return titleChunk ? `${stripHtml(titleChunk)} - The Clientele` : 'The Clientele';
   },
   bodyAttrs: {
     class: "bg-white dark:bg-gray-900 antialiased",
