@@ -4,7 +4,7 @@ function stripHtml(str) {
 }
 
 const iconWidth = "100%";
-const primaryDark = "#333";
+const primaryDark = "#111827";
 const primaryLight = "#fff";
 const primaryHover = "#000";
 
@@ -100,7 +100,7 @@ const route = useRoute();
       </NuxtLink>
 
       <div
-        class="grid grid-cols-3 gap-2 sm:gap-4 max-w-[30%] lg:max-w-[20%] ml-auto"
+        class="grid grid-cols-3 gap-2 sm:gap-4 ml-auto"
       >
         <twitter
           :width="iconWidth"

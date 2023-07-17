@@ -1,19 +1,6 @@
 <template>
-  <a :href="url" class="outline-none focus-visible:ring-2">
-    <svg
-      viewBox="0 0 512 512"
-      xmlns="http://www.w3.org/2000/svg"
-      :width="width"
-      aria-labelledby="title-facebook"
-    >
-      <title id="title-facebook">Facebook</title>
-      <rect :fill="colorDark" height="512" rx="15%" width="512" />
-      <path
-        d="m355.6 330 11.4-74h-71v-48c0-20.2 9.9-40 41.7-40h32.3v-63s-29.3-5-57.3-5c-58.5 0-96.7 35.4-96.7 99.6v56.4h-65v74h65v182h80v-182z"
-        :fill="colorLight"
-      />
-    </svg>
-  </a>
+  <a :href="url" class="outline-none focus-visible:ring-2 w-[6vw] p-0 m-0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/></svg>  </a>
 </template>
 
 <script>
@@ -44,7 +31,27 @@ export default {
 </script>
 
 <style scoped>
-svg:hover rect {
-  fill: v-bind(colorHover);
+a {
+  --color: #333;
+  --hover: #000;
+  --bg: red;
+  background: var(--bg);
+
+}
+
+a path {
+  fill: var(--color);
+}
+
+a:hover path {
+  fill: var(--hover);
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    --color: #333;
+    --hover: red;
+    --bg: #fff;
+  }
 }
 </style>
