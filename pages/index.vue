@@ -4,8 +4,16 @@ const formatDate = useDateFormat();
 const excerpt = true;
 
 useHead({
- title: ''
+  title: ''
 });
+useSeoMeta({
+  ogImage: 'https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg',
+  ogUrl: 'https://theclientele.co.uk',
+  twitterTitle: 'The Clientele',
+  twitterDescription: 'Official website of The Clientele',
+  twitterImage: 'https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg',
+  twitterCard: 'Official website of The Clientele',
+})
 </script>
 
 <template>
