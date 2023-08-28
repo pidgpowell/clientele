@@ -8,11 +8,11 @@
     "regen": "npm run generate && php -S localhost:3002 -t .output/public"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.7.0",
-    "@nuxt/devtools": "^0.6.7",
+    "@nuxt/content": "^2.7.2",
+    "@nuxt/devtools": "^0.8.0",
     "@nuxt/image": "^1.0.0-rc.1",
     "@tailwindcss/typography": "^0.5.9",
-    "nuxt": "^3.6.3"
+    "nuxt": "^3.7.0"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.8.0",
