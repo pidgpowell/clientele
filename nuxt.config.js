@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
   experimental: {
     payloadExtraction: true,
-    headNext: true,
+    headNext: true
   },
 
   vue: {
