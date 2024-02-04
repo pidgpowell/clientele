@@ -1,79 +1,76 @@
 <script setup>
-    function stripHtml(str) {
-      return str.replace(/<[^>]*>/g, "");
-    }
+  function stripHtml(str) {
+    return str.replace(/<[^>]*>/g, "");
+  }
 
-    const iconWidth = "100%";
-    const primaryDark = "#111827";
-    const primaryLight = "#fff";
-    const primaryHover = "#000";
+  const iconWidth = "100%";
+  const primaryDark = "#333";
+  const primaryLight = "#fff";
+  const primaryHover = "#000";
 
-    const formatDate = useDateFormat();
+  const formatDate = useDateFormat();
 
-    useHead({
-      titleTemplate: (titleChunk) => {
-        return titleChunk
-          ? `${stripHtml(titleChunk)} - The Clientele`
-          : "The Clientele";
+  useHead({
+    titleTemplate: (titleChunk) => {
+      return titleChunk
+        ? `${stripHtml(titleChunk)} - The Clientele`
+        : "The Clientele";
+    },
+    bodyAttrs: {
+      class: "bg-white dark:bg-gray-900 antialiased",
+    },
+    htmlAttrs: {
+      lang: "en",
+    },
+    meta: [
+      { name: "og:title", content: `The Clientele` },
+      { name: "description", content: `Official website of The Clientele` },
+      { name: "og:description", content: `Official website of The Clientele` },
+    ],
+    link: [
+      {
+        rel: "icon",
+        style: "image/svg+xml",
+        href: "/favicon.svg",
       },
-      bodyAttrs: {
-        class: "bg-white dark:bg-gray-900 antialiased",
+      {
+        rel: "mask-icon",
+        style: "image/svg+xml",
+        href: "/favicon.svg",
       },
-      htmlAttrs: {
-        lang: "en",
+      {
+        rel: "icon",
+        style: "image/png",
+        href: "/favicon.png",
       },
-      meta: [
-        { name: "og:title", content: `The Clientele` },
-        { name: "description", content: `Official website of The Clientele` },
-        { name: "og:description", content: `Official website of The Clientele` },
-      ],
-      link: [
-        {
-          rel: "icon",
-          style: "image/svg+xml",
-          href: "/favicon.svg",
-        },
-        {
-          rel: "mask-icon",
-          style: "image/svg+xml",
-          href: "/favicon.svg",
-        },
-        {
-          rel: "icon",
-          style: "image/png",
-          href: "/favicon.png",
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.googleapis.com",
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.gstatic.com",
-          crossorigin: true,
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700&display=swap",
-        },
-      ],
-    });
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: true,
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700&display=swap",
+      },
+    ],
+  });
 
-  <<<<<<< HEAD
-  =======
-    useSeoMeta({
-      ogImage:
-        "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
-      ogUrl: "https://theclientele.co.uk",
-      twitterTitle: "The Clientele",
-      twitterDescription: "Official website of The Clientele",
-      twitterImage:
-        "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
-      twitterCard: "Official website of The Clientele",
-    });
+  useSeoMeta({
+    ogImage:
+      "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
+    ogUrl: "https://theclientele.co.uk",
+    twitterTitle: "The Clientele",
+    twitterDescription: "Official website of The Clientele",
+    twitterImage:
+      "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
+    twitterCard: "Official website of The Clientele",
+  });
 
-  >>>>>>> main
-    const route = useRoute();
+  const route = useRoute();
 </script>
 
 <template>
