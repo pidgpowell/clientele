@@ -1,26 +1,34 @@
 <script setup>
-const { data } = await useAsyncData('news-home', () => queryContent('news').sort({ date: -1 }).limit(1).find());
-const formatDate = useDateFormat();
-const excerpt = true;
+  const { data } = await useAsyncData("news-home", () =>
+    queryContent("news").sort({ date: -1 }).limit(1).find()
+  );
+  const formatDate = useDateFormat();
+  const excerpt = true;
 
-useHead({
- title: ''
-});
+  useHead({
+    title: "",
+  });
 </script>
 
 <template>
   <div class="relative pt-2">
-    <nav class="absolute -top-2 flex items-center text-xs text-gray-500" aria-label="breadcrumbs">
+    <nav
+      class="absolute -top-2 flex items-center text-xs text-gray-500"
+      aria-label="breadcrumbs"
+    >
       <icon-home /> Home
     </nav>
 
-    <div v-for="post in data" :key="post._id">
+    <div
+      v-for="post in data"
+      :key="post._id"
+    >
       <h2>
         <NuxtLink
           :to="post._path"
           class="no-underline hover:underline"
         >
-        <span v-html="post.title" />
+          <span v-html="post.title" />
         </NuxtLink>
       </h2>
 
@@ -45,7 +53,11 @@ useHead({
 
     <hr />
 
-    <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
+    <Shows
+      label="Upcoming Shows"
+      :upcoming="true"
+      direction="asc"
+    />
 
     <NuxtLink
       to="/shows"

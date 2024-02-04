@@ -8,15 +8,15 @@
     "regen": "npm run generate && php -S localhost:3002 -t .output/public"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.7.0",
-    "@nuxt/devtools": "^0.6.7",
-    "@nuxt/image": "^1.0.0-rc.1",
-    "@tailwindcss/typography": "^0.5.9",
-    "nuxt": "^3.6.3"
+    "@nuxt/content": "^2.11.0",
+    "@nuxt/devtools": "^1.0.8",
+    "@nuxt/image": "^1.3.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "nuxt": "^3.10.0"
   },
   "dependencies": {
-    "@nuxtjs/tailwindcss": "^6.8.0",
-    "@tailwindcss/forms": "^0.5.4",
-    "sort-es": "^1.6.13"
+    "@nuxtjs/tailwindcss": "^6.11.3",
+    "@tailwindcss/forms": "^0.5.7",
+    "sort-es": "^1.7.6"
   }
 }

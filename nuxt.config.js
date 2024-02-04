@@ -13,7 +13,8 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    payloadExtraction: true
+    payloadExtraction: true,
+    headNext: true
   },
 
   vue: {
