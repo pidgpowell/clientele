@@ -1,3 +1,13 @@
+<script setup>
+  import("@/components/vendor/lite-youtube.js");
+
+  defineProps({
+    videoId: {
+      type: String,
+    },
+  });
+</script>
+
 <template>
   <client-only>
     <lite-youtube
@@ -7,17 +17,3 @@
     />
   </client-only>
 </template>
-
-<script>
-import( '@/components/vendor/lite-youtube.js' );
-
-export default {
-  name: 'EmbedYouTube',
-
-  props: {
-    videoId: {
-      type: String,
-    },
-  }
-};
-</script>

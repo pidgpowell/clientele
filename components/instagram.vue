@@ -1,5 +1,8 @@
 <template>
-  <a :href="url" class="outline-none focus-visible:ring-2">
+  <a
+    :href="url"
+    class="outline-none focus-visible:ring-2"
+  >
     <svg
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +10,12 @@
       aria-labelledby="title-instagram"
     >
       <title id="title-instagram">Instagram</title>
-      <rect :fill="colorLight" height="512" rx="30%" width="512" />
+      <rect
+        :fill="colorLight"
+        height="512"
+        rx="30%"
+        width="512"
+      />
       <path
         d="m301 256c0 24.851562-20.148438 45-45 45s-45-20.148438-45-45 20.148438-45 45-45 45 20.148438 45 45zm0 0"
         :fill="colorDark"
@@ -25,34 +33,34 @@
 </template>
 
 <script>
-export default {
-  props: {
-    width: {
-      type: [Number, String],
-      default: null,
+  export default {
+    props: {
+      width: {
+        type: [Number, String],
+        default: null,
+      },
+      colorDark: {
+        type: String,
+        default: "#ffffff",
+      },
+      colorLight: {
+        type: String,
+        default: "#000000",
+      },
+      colorHover: {
+        type: String,
+        default: "#cccccc",
+      },
+      url: {
+        type: String,
+        default: "",
+      },
     },
-    colorDark: {
-      type: String,
-      default: "#ffffff",
-    },
-    colorLight: {
-      type: String,
-      default: "#000000",
-    },
-    colorHover: {
-      type: String,
-      default: "#cccccc",
-    },
-    url: {
-      type: String,
-      default: "",
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
-svg:hover path {
-  fill: v-bind(colorHover);
-}
+  svg:hover path {
+    fill: v-bind(colorHover);
+  }
 </style>
