@@ -1,7 +1,32 @@
+<script setup>
+  defineProps({
+    width: {
+      type: [Number, String],
+      default: null,
+    },
+    colorDark: {
+      type: String,
+      default: "#ffffff",
+    },
+    colorLight: {
+      type: String,
+      default: "#000000",
+    },
+    colorHover: {
+      type: String,
+      default: "#cccccc",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+  });
+</script>
+
 <template>
   <a
     :href="url"
-    class="outline-none focus-visible:ring-2 w-[6vw]"
+    class="icon outline-none focus-visible:ring-2 w-[6vw]"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,55 +38,3 @@
     </svg>
   </a>
 </template>
-
-<script>
-  export default {
-    props: {
-      width: {
-        type: [Number, String],
-        default: null,
-      },
-      colorDark: {
-        type: String,
-        default: "#ffffff",
-      },
-      colorLight: {
-        type: String,
-        default: "#000000",
-      },
-      colorHover: {
-        type: String,
-        default: "#cccccc",
-      },
-      url: {
-        type: String,
-        default: "",
-      },
-    },
-  };
-</script>
-
-<style scoped>
-  a {
-    --color: #333;
-    --hover: #000;
-    --bg: none;
-    background: var(--bg);
-  }
-
-  a path {
-    fill: var(--color);
-  }
-
-  a:hover path {
-    fill: var(--hover);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    a {
-      --color: #ffffff55;
-      --hover: #999;
-      --bg: none;
-    }
-  }
-</style>

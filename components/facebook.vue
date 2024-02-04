@@ -26,7 +26,7 @@
 <template>
   <a
     :href="url"
-    class="outline-none focus-visible:ring-2 w-[6vw] p-0 m-0"
+    class="icon outline-none focus-visible:ring-2 w-[6vw] p-0 m-0"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,28 +38,3 @@
     </svg>
   </a>
 </template>
-
-<style scoped>
-  a {
-    --color: #333;
-    --hover: #000;
-    --bg: none;
-    background: var(--bg);
-  }
-
-  a path {
-    fill: var(--color);
-  }
-
-  a:hover path {
-    fill: var(--hover);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    a {
-      --color: #ffffff55;
-      --hover: #999;
-      --bg: none;
-    }
-  }
-</style>
