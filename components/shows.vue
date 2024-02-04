@@ -53,14 +53,10 @@
         })
         .filter((item) => {
           // upcoming shows vs old shows
-          if (props.upcoming !== undefined) {
-            if (props.upcoming === true) {
-              return new Date(item.date) >= new Date();
-            } else {
-              return new Date(item.date) < new Date();
-            }
+          if (props.upcoming === true) {
+            return new Date(item.date) >= new Date();
           } else {
-            return true;
+            return new Date(item.date) < new Date();
           }
         })
         // simple search
