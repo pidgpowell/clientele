@@ -11,3 +11,28 @@
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
+.icon {
+  --color: #333;
+  --hover: #000;
+  --bg: none;
+}
+.icon  {
+  background: var(--bg);
+}
+
+.icon  path {
+  fill: var(--color);
+}
+
+.icon:hover path {
+  fill: var(--hover);
+}
+
+ @media (prefers-color-scheme: dark) {
+  .icon {
+      --color: #ffffff55;
+      --hover: #999;
+      --bg: none;
+  }
+}
