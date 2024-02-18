@@ -217,7 +217,7 @@
                 class="text-sm leading-tight text-gray-700 dark:text-gray-500"
               />
               <a
-                v-if="show['ticket-url']"
+                v-if="show['ticket-url'] && upcoming"
                 class="text-xs underline"
                 :href="show['ticket-url']"
                 rel="noopener noreferrer"
