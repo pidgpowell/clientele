@@ -27,6 +27,7 @@
   <a
     :href="url"
     class="icon outline-none focus-visible:ring-2 w-[6vw] p-0 m-0"
+    aria-label="Facebook"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
