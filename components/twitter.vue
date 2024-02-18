@@ -27,6 +27,7 @@
   <a
     :href="url"
     class="icon outline-none focus-visible:ring-2 w-[6vw]"
+    aria-label="Twitter"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
