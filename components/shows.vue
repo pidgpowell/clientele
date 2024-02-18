@@ -40,51 +40,41 @@
     ].sort(byNumber({ desc: true }));
   });
 
-  const dates = computed(() => {
-    return (
-      getRawShowsData.body
-        .filter((item) => {
-          if (filterByYear.value) {
-            return (
-              formatDate(item.date, { year: "numeric" }) === filterByYear.value
-            );
-          }
-          return item;
-        })
-        .filter((item) => {
-          // upcoming shows vs old shows
-          if (props.upcoming === true) {
-            return new Date(item.date) >= new Date();
-          } else {
-            return new Date(item.date) < new Date();
-          }
-        })
-        // simple search
-        .filter((item) => {
-          if (search.value) {
-            const searchFields = [item.venue, item.city, item.country];
-            let searchResult = 0;
-            searchFields.forEach((field) => {
-              if (field.toLowerCase().includes(search.value.toLowerCase()))
-                searchResult++;
-            });
-            return searchResult > 0 ? item : false;
-          }
-          return true;
-        })
-        // simple sort
-        .sort(
-          byValue(
-            (i) =>
-              currentSort.value === "date"
-                ? new Date(i[currentSort.value])
-                : i[currentSort.value],
-            currentSort.value === "date"
-              ? byNumber({ desc: direction.value[currentSort.value] })
-              : byString({ desc: direction.value[currentSort.value] })
-          )
-        )
+  const filterByYearFunc = (item) => {
+    if (!filterByYear.value) return true;
+    return formatDate(item.date, { year: "numeric" }) === filterByYear.value;
+  };
+
+  const filterByUpcomingFunc = (item) => {
+    const itemDate = new Date(item.date);
+    const currentDate = new Date();
+    return props.upcoming ? itemDate >= currentDate : itemDate < currentDate;
+  };
+
+  const filterBySearchFunc = (item) => {
+    if (!search.value) return true;
+    const searchFields = [item.venue, item.city, item.country];
+    return searchFields.some((field) =>
+      field.toLowerCase().includes(search.value.toLowerCase())
     );
+  };
+
+  const dates = computed(() => {
+    return getRawShowsData.body
+      .filter(filterByYearFunc)
+      .filter(filterByUpcomingFunc)
+      .filter(filterBySearchFunc)
+      .sort(
+        byValue(
+          (i) =>
+            currentSort.value === "date"
+              ? new Date(i[currentSort.value])
+              : i[currentSort.value],
+          currentSort.value === "date"
+            ? byNumber({ desc: direction.value[currentSort.value] })
+            : byString({ desc: direction.value[currentSort.value] })
+        )
+      );
   });
 
   const sort = (key) => {
