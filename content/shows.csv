@@ -249,20 +249,19 @@ date,venue,city,country,info,ticket-url
 2023-08-17,Lodge Room,"Los Angeles, CA",US,,
 2023-08-18,Pappy and Harriet's,"Pioneertown, CA",US,,
 2023-08-19,Fernwood Tavern (inside),"Big Sur, CA",US,,
-2023-08-20,The Chapel,"San Francisco, CA",US,,"<a href=""https://bit.ly/3H2cy5n"">Buy Tickets</a>"
-2023-08-22,Mississippi Studios,"Portland, OR",US,,"<a href=""https://bit.ly/40s8SAH"">Buy Tickets</a>"
-2023-08-23,Tractor Tavern,Seattle,US,,"<a href=""https://bit.ly/TheClientele_8_23"">Buy Tickets</a>"
-2023-10-01,Petit Bain,Paris,France,,"<a href=""https://petitbain.org"">petitbain.org</a>"
-2023-10-13,District,Liverpool,England,w/ Prof Yaffle,"<a href=""https://www.skiddle.com/whats-on/Liverpool/District-/The-Clientele/36405327/"">Buy Tickets</a>"
-2023-10-15,Brudenell Social Club,Leeds,England,,"<a href=""https://brudenellpresents.seetickets.com/event/the-clientele/brudenell-social-club/2721188"">Buy Tickets</a>"
-2023-11-03,Stereo,Glasgow,Scotland,,"<a href=""https://www.citizenticket.com/events/pop-mutations/"">Buy Tickets</a>"
-2024-01-19,Lafayette,London,England,(bundled with limited 7inch single)," <a href=""https://dice.fm/partner/club-fandango/event/vywe7-the-clientele-19th-jan-lafayette-london-tickets?dice_id=1327486"">Buy Tickets</a>"
+2023-08-20,The Chapel,"San Francisco, CA",US,,https://bit.ly/3H2cy5n
+2023-08-22,Mississippi Studios,"Portland, OR",US,,https://bit.ly/40s8SAH
+2023-08-23,Tractor Tavern,Seattle,US,,https://bit.ly/TheClientele_8_23
+2023-10-01,Petit Bain,Paris,France,,https://petitbain.org
+2023-10-13,District,Liverpool,England,w/ Prof Yaffle,https://www.skiddle.com/whats-on/Liverpool/District-/The-Clientele/36405327
+2023-10-15,Brudenell Social Club,Leeds,England,,https://brudenellpresents.seetickets.com/event/the-clientele/brudenell-social-club/2721188
+2023-11-03,Stereo,Glasgow,Scotland,,https://www.citizenticket.com/events/pop-mutations/
+2024-01-19,Lafayette,London,England,(bundled with limited 7inch single),https://dice.fm/partner/club-fandango/event/vywe7-the-clientele-19th-jan-lafayette-london-tickets?dice_id=1327486
 2024-01-20,Green Door Store, Brighton,England,,
 2024-01-26,Deaf Institute,Manchester,England,,
 2024-01-27,Thekla,Bristol,England,,
-2024-05-11,Centre culturel del esquin,Lille,France,,"<a href=""https://centrecultureldelesquin.fr/agenda/the-clientele-joni-ile/"">Buy Tickets</a>"
-2024-07-27,Cats Cradle,"Chapel Hill, NC",US,MergeFest 35,"<a href=""https://mergerecords.com/news/6149"">Buy Tickets</a>"
+2024-05-11,Centre culturel del esquin,Lille,France,,https://centrecultureldelesquin.fr/agenda/the-clientele-joni-ile
+2024-07-27,Cats Cradle,"Chapel Hill, NC",US,MergeFest 35,https://mergerecords.com/news/6149
 2024-07-11,The Royal Albert Hall,London,England,Opening for War on Drugs,
-2024-07-27,Cat's Cradle,"Carrboro, NC",US,,"<a href=""http://tinyurl.com/3tsu7h4b"">Tickets</a>"
-2024-07-29,Johnny Brenda's,"Philadelphia, PA",US,,"<a href=""http://tinyurl.com/y8xw7k4a"">Tickets</a>"
-2024-07-30,Le Poisson Rouge,"New York, NY",US,,"<a href=""http://tinyurl.com/yc36dsy3"">Tickets</a>"
+2024-07-29,Johnny Brenda's,"Philadelphia, PA",US,,http://tinyurl.com/y8xw7k4a
+2024-07-30,Le Poisson Rouge,"New York, NY",US,,http://tinyurl.com/yc36dsy3
