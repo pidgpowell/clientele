@@ -23,7 +23,7 @@
 
   let search = ref("");
   let currentSort = ref("date");
-  let filterByYear = ref("");
+  let year = ref("");
   const formatDate = useDateFormat();
   const getRawShowsData = await queryContent("shows").findOne();
   // sort tour dates
@@ -40,18 +40,18 @@
     ].sort(byNumber({ desc: true }));
   });
 
-  const filterByYearFunc = (item) => {
-    if (!filterByYear.value) return true;
-    return formatDate(item.date, { year: "numeric" }) === filterByYear.value;
+  const filterByYear = (item) => {
+    if (!year.value) return true;
+    return formatDate(item.date, { year: "numeric" }) === year.value;
   };
 
-  const filterByUpcomingFunc = (item) => {
+  const filterByUpcoming = (item) => {
     const itemDate = new Date(item.date);
     const currentDate = new Date();
     return props.upcoming ? itemDate >= currentDate : itemDate < currentDate;
   };
 
-  const filterBySearchFunc = (item) => {
+  const filterBySearch = (item) => {
     if (!search.value) return true;
     const searchFields = [item.venue, item.city, item.country];
     return searchFields.some((field) =>
@@ -61,9 +61,9 @@
 
   const dates = computed(() => {
     return getRawShowsData.body
-      .filter(filterByYearFunc)
-      .filter(filterByUpcomingFunc)
-      .filter(filterBySearchFunc)
+      .filter(filterByYear)
+      .filter(filterByUpcoming)
+      .filter(filterBySearch)
       .sort(
         byValue(
           (i) =>
@@ -96,7 +96,7 @@
         v-if="!upcoming"
       >
         <select
-          v-model="filterByYear"
+          v-model="year"
           class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
         >
           <option
