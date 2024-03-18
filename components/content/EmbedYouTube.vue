@@ -12,7 +12,6 @@
   <client-only>
     <lite-youtube
       nocookie="true"
-      params="modestbranding=1"
       :videoid="videoId"
     />
   </client-only>
