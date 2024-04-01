@@ -26,7 +26,7 @@
       <h2>
         <NuxtLink
           :to="post._path"
-          class="no-underline hover:underline"
+          class="no-underline hover:underline underline-offset-4 decoration-2"
         >
           <span v-html="post.title" />
         </NuxtLink>
