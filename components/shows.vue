@@ -95,7 +95,13 @@
         class="flex gap-2"
         v-if="!upcoming"
       >
+        <label
+          for="year"
+          class="sr-only"
+          >Year</label
+        >
         <select
+          id="year"
           v-model="year"
           class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
         >
@@ -115,7 +121,13 @@
             {{ year }}
           </option>
         </select>
+        <label
+          for="search"
+          class="sr-only"
+          >Search</label
+        >
         <input
+          id="search"
           type="search"
           class="form-input border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm dark:text-white max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
           v-model="search"
