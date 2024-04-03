@@ -118,28 +118,10 @@
         </h1>
       </NuxtLink>
 
-      <div class="grid grid-cols-3 gap-2 sm:gap-4 ml-auto">
-        <twitter
-          :width="iconWidth"
-          :colorDark="primaryDark"
-          :colorLight="primaryLight"
-          :colorHover="primaryHover"
-          url="https://twitter.com/theclientele"
-        />
-        <instagram
-          :width="iconWidth"
-          :colorDark="primaryDark"
-          :colorLight="primaryLight"
-          :colorHover="primaryHover"
-          url="https://www.instagram.com/theclienteleband/"
-        />
-        <facebook
-          :width="iconWidth"
-          :colorDark="primaryDark"
-          :colorLight="primaryLight"
-          :colorHover="primaryHover"
-          url="https://www.facebook.com/theclienteleofficial"
-        />
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 ml-auto mt-1.5">
+        <x url="https://twitter.com/theclientele" />
+        <instagram url="https://www.instagram.com/theclienteleband/" />
+        <facebook url="https://www.facebook.com/theclienteleofficial" />
       </div>
 
       <main

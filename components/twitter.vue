@@ -1,21 +1,5 @@
 <script setup>
   defineProps({
-    width: {
-      type: [Number, String],
-      default: null,
-    },
-    colorDark: {
-      type: String,
-      default: "#ffffff",
-    },
-    colorLight: {
-      type: String,
-      default: "#000000",
-    },
-    colorHover: {
-      type: String,
-      default: "#cccccc",
-    },
     url: {
       type: String,
       default: "",

@@ -5,6 +5,15 @@
 a, .prose a {
   @apply underline-offset-2 decoration-1;
 }
+
+.prose h2 {
+  hanging-punctuation: first last;
+}
+
+.prose p {
+  hanging-punctuation: first allow-end last;
+}
+
 .prose p:has(img) {
   margin: 0;
   padding: 0;
