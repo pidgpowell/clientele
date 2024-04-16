@@ -1,6 +1,9 @@
-# The Clientele web site
+# The Clientele web site (official)
 
-A Nuxt-based site using the `@nuxt/content` module to create [news](https://theclientele.co.uk/news) pages with markdown files and a [shows](https://theclientele.co.uk/shows) page from a `.csv` file of data
+A `Nuxt`-based site using the `@nuxt/content` module to create [news](https://theclientele.co.uk/news) pages with markdown files and a [shows](https://theclientele.co.uk/shows) page from a `.csv` file of data
+
+It is deployed via Vercel to this url:
+[https://theclientele.co.uk](https://theclientele.co.uk)
 
 See below for local development steps:
 
