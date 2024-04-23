@@ -212,20 +212,18 @@
             >
               {{ show.venue }}
             </div>
-            <div class="flex gap-2">
+            <div
+              class="flex flex-col flex-wrap lg:flex-row gap-1 text-sm leading-tight"
+            >
               <span
                 v-if="show.info"
                 v-html="show.info"
-                class="text-sm leading-tight text-gray-700 dark:text-gray-500"
+                class="text-sm text-gray-700 dark:text-gray-500"
               />
-              <a
-                v-if="show['ticket-url'] && upcoming"
-                class="text-xs underline"
-                :href="show['ticket-url']"
-                rel="noopener noreferrer"
-              >
-                Buy Tickets
-              </a>
+              <Tickets
+                :show="show"
+                v-if="upcoming && show['ticket-url']"
+              />
             </div>
           </td>
           <td class="break-all md:break-normal">
