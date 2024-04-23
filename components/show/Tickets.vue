@@ -15,13 +15,12 @@
   <span class="text-sm">
     <span
       v-if="hasSecondTicketVendor"
-      class="whitespace-nowrap"
-      >Buy Tickets:
-    </span>
-
+      class="whitespace-nowrap block mt-1 sm:mt-0"
+      >Buy Tickets:</span
+    >
     <a
       v-if="show['ticket-url']"
-      class="underline block sm:inline-block mr-1"
+      class="mt-0 underline block sm:inline-block mr-1"
       :href="show['ticket-url']"
       rel="noopener noreferrer"
     >
