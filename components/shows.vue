@@ -125,13 +125,13 @@
         </select>
         <label
           for="search"
-          class="sr-only"
+          class="sr-only w-full"
           >Search</label
         >
         <input
           id="search"
           type="search"
-          class="form-input border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm dark:text-white max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+          class="form-input border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm dark:text-white md:max-w-[150px] px-2 py-1 text-sm md:text-base"
           v-model="search"
           placeholder="Search"
         />
