@@ -4,9 +4,9 @@
 </script>
 
 <template>
-  <div
-    class="text-lg/tight font-semibold sm:font-medium text-gray-700 dark:text-gray-200"
+  <span
+    class="font-semibold text-gray-700 text-lg/tight sm:font-medium dark:text-gray-200"
   >
     {{ venue }}
-  </div>
+  </span>
 </template>

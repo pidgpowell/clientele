@@ -1,24 +1,26 @@
 <script setup lang="ts">
-  const { date, options } = withDefaults(
-    defineProps<{
-      date: string;
-      options?: { month: string; day: string; year: string };
-    }>(),
-    {
-      options: { month: "short", day: "numeric", year: "numeric" },
-    }
-  );
+  const { date, options } = defineProps<{
+    date: string;
+    options?: { month: string; day: string; year: string };
+  }>();
 
   const formatDate = useDateFormat();
 </script>
 
 <template>
-  <div
-    class="font-light text-base/snug"
+  <time
+    class="block font-light text-base/snug"
+    :datetime="date"
     v-if="date"
   >
-    {{ formatDate(date, { month: options.month, day: options.day }) }}
+    {{
+      formatDate(date, {
+        month: options?.month || "short",
+        day: options?.day || "numeric",
+      })
+    }}
     <span>, </span>
-    {{ formatDate(date, { year: options.year }) }}
-  </div>
+    {{ formatDate(date, { year: options?.year || "numeric" }) }}
+    &nbsp;
+  </time>
 </template>

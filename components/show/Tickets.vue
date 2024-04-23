@@ -12,15 +12,15 @@
 </script>
 
 <template>
-  <span class="text-sm">
+  <p class="text-sm m-0 p-0 not-prose">
     <span
       v-if="hasSecondTicketVendor"
-      class="whitespace-nowrap block mt-1 sm:mt-0"
-      >Buy Tickets:</span
-    >
+      class="block mt-1 whitespace-nowrap sm:mt-0"
+      >Buy Tickets:
+    </span>
     <a
       v-if="show['ticket-url']"
-      class="mt-0 underline block sm:inline-block mr-1"
+      class="block mt-0 mr-1 underline sm:inline-block"
       :href="show['ticket-url']"
       rel="noopener noreferrer"
     >
@@ -31,11 +31,11 @@
     </a>
     <a
       v-if="hasSecondTicketVendor"
-      class="underline block sm:inline-block"
+      class="block underline sm:inline-block"
       :href="show['ticket-url2']"
       rel="noopener noreferrer"
     >
       {{ getDomainFromUrl(show["ticket-url2"]) }}
     </a>
-  </span>
+  </p>
 </template>
