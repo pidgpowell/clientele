@@ -27,6 +27,7 @@
     </nav>
     <h2>News</h2>
   </div>
+
   <ul class="list-none m-0 mt-7 p-0">
     <li
       v-for="page in news"
@@ -35,7 +36,7 @@
     >
       <NuxtLink
         :to="page._path"
-        class="text-lg -mb-1"
+        class="text-lg/snug max-w-[55ch] block"
         ><span v-html="page.title"
       /></NuxtLink>
       <small class="text-sm block mt-0">
