@@ -13,7 +13,10 @@
 </script>
 
 <template>
-  <div class="font-light text-base/snug">
+  <div
+    class="font-light text-base/snug"
+    v-if="date"
+  >
     {{ formatDate(date, { month: options.month, day: options.day }) }}
     <span>, </span>
     {{ formatDate(date, { year: options.year }) }}
