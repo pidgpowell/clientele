@@ -216,7 +216,7 @@
                   v-html="show.info"
                   class="text-sm text-gray-700 dark:text-gray-500"
                 />
-                <Tickets
+                <ShowTickets
                   :show="show"
                   v-if="upcoming && show['ticket-url']"
                 />
