@@ -1,7 +1,7 @@
 <template>
   <svg
     viewBox="0 0 24 24"
-    class="h-3 w-3 transform-gpu duration-75 text-gray-400"
+    class="w-3 h-3 text-gray-400 transform-gpu duration-75"
   >
     <path
       fill="currentColor"

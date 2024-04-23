@@ -13,7 +13,7 @@
 <template>
   <div class="relative pt-2">
     <nav
-      class="absolute -top-2 flex items-center text-xs text-gray-500"
+      class="absolute flex items-center text-xs text-gray-500 -top-2"
       aria-label="breadcrumbs"
     >
       <icon-home /> Home
@@ -45,7 +45,7 @@
       <NuxtLink
         v-if="excerpt && post.excerpt"
         :to="post._path"
-        class="border-1 px-4 py-3 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
+        class="px-4 py-3 no-underline border border-black border-solid border-1 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
       >
         Read more
       </NuxtLink>
@@ -61,7 +61,7 @@
 
     <NuxtLink
       to="/shows"
-      class="mt-6 block max-w-fit border-1 px-4 py-2 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
+      class="block px-4 py-2 mt-6 no-underline border border-black border-solid max-w-fit border-1 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       See all shows
     </NuxtLink>

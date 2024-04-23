@@ -87,7 +87,7 @@
 
 <template>
   <div class="block">
-    <div class="flex flex-col xs:flex-row xs:items-center justify-end gap-2">
+    <div class="flex flex-col justify-end xs:flex-row xs:items-center gap-2">
       <h2
         class="!mt-0 mr-auto !mb-0"
         v-html="label"
@@ -140,14 +140,14 @@
 
     <div v-if="dates.length > 0">
       <table
-        class="hidden sm:block mb-2 mt-7 prose-td:text-md prose-td:text-sm prose-td:sm:text-lg"
+        class="hidden mb-2 sm:block mt-7 prose-td:text-md prose-td:text-sm prose-td:sm:text-lg"
         :aria-labelledby="`table-label-${upcoming ? 'upcoming' : 'old'}`"
       >
         <thead>
           <tr>
             <th class="flex leading-snug">
               <button
-                class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2 no-wrap"
+                class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2 no-wrap"
                 @click="sort('date')"
               >
                 Date
@@ -159,7 +159,7 @@
             </th>
             <th class="leading-snug">
               <button
-                class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+                class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2"
                 @click="sort('venue')"
               >
                 Venue
@@ -171,7 +171,7 @@
             </th>
             <th class="leading-snug">
               <button
-                class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+                class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2"
                 @click="sort('city')"
               >
                 City
@@ -183,7 +183,7 @@
             </th>
             <th class="leading-snug">
               <button
-                class="flex gap-1 items-center font-bold outline-none focus-visible:ring-2"
+                class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2"
                 @click="sort('country')"
               >
                 Country
@@ -200,16 +200,16 @@
             v-for="(show, index) in dates"
             :key="index"
           >
-            <td class="whitespace-nowrap font-light">
+            <td class="font-light whitespace-nowrap">
               <ShowDate :date="show.date" />
             </td>
             <td
-              class="font-normal flex flex-col items-start leading-0 break-all md:break-normal"
+              class="flex flex-col items-start font-normal break-all leading-0 md:break-normal"
             >
               <ShowVenue :venue="show.venue" />
 
               <div
-                class="flex flex-col flex-wrap lg:flex-row gap-1 text-sm leading-tight"
+                class="flex flex-col flex-wrap text-sm leading-tight lg:flex-row gap-1"
               >
                 <span
                   v-if="show.info"
@@ -232,8 +232,8 @@
         </tbody>
       </table>
     </div>
-    <div class="flex flex-col gap-4 sm:hidden not-prose my-4">
-      <div
+    <div class="flex flex-col my-4 gap-4 sm:hidden not-prose">
+      <article
         v-for="(show, index) in dates"
         :key="index"
       >
@@ -249,18 +249,18 @@
         <p
           v-if="show.info"
           v-html="show.info"
-          class="text-sm/tight font-light text-gray-700 dark:text-gray-500 not-prose leading-0 p-0 m-0"
+          class="p-0 m-0 font-light text-gray-700 text-sm/tight dark:text-gray-500 not-prose leading-0"
         />
         <ShowTickets
           :show="show"
           v-if="upcoming && show['ticket-url']"
         />
-      </div>
+      </article>
     </div>
   </div>
   <p
     v-if="dates.length === 0"
-    class="text-gray-500 font-light mb-6"
+    class="mb-6 font-light text-gray-500"
   >
     No shows scheduled.
   </p>

@@ -75,22 +75,22 @@
 
 <template>
   <div
-    class="pt-2 pb-4 px-4 sm:p-16 sm:pt-10 sm:pb-4 grid gap-8 h-screen mb-2 font-body"
+    class="h-screen px-4 pt-2 pb-4 mb-2 sm:p-16 sm:pt-10 sm:pb-4 grid gap-8 font-body"
   >
-    <div class="flex flex-col gap-4 pr-1 sm:pr-0">
+    <div class="flex flex-col pr-1 gap-4 sm:pr-0">
       <nav
-        class="flex gap-4 mb-4"
+        class="flex mb-4 gap-4"
         role="navigation"
       >
         <NuxtLink
           to="/news"
-          class="text-gray-800 dark:text-gray-200 outline-none focus-visible:ring-2"
+          class="text-gray-800 outline-none dark:text-gray-200 focus-visible:ring-2"
           :class="{ 'font-bold': route.path.includes('/news') }"
           >News</NuxtLink
         >
         <NuxtLink
           to="/shows"
-          class="text-gray-800 dark:text-gray-200 outline-none focus-visible:ring-2"
+          class="text-gray-800 outline-none dark:text-gray-200 focus-visible:ring-2"
           :class="{ 'font-bold': route.path.includes('/shows') }"
           >Shows</NuxtLink
         >

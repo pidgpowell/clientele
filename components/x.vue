@@ -10,7 +10,7 @@
 <template>
   <a
     :href="url"
-    class="icon outline-none focus-visible:ring-2"
+    class="outline-none icon focus-visible:ring-2"
     aria-label="X"
   >
     <svg

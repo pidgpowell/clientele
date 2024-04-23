@@ -10,19 +10,19 @@
   >
     <div class="relative pt-2">
       <nav
-        class="absolute -top-2 flex items-center"
+        class="absolute flex items-center -top-2"
         aria-label="breadcrumbs"
       >
         <IconHome />
         <NuxtLink
-          class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
+          class="text-xs text-gray-600 no-underline dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 hover:underline"
           to="/"
         >
           Home</NuxtLink
         >
         <IconBreadcrumbDivider />
         <NuxtLink
-          class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
+          class="text-xs text-gray-600 no-underline dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 hover:underline"
           to="/news"
           >News</NuxtLink
         >

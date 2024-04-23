@@ -14,12 +14,12 @@
 <template>
   <div class="relative pt-2">
     <nav
-      class="absolute -top-2 flex items-center"
+      class="absolute flex items-center -top-2"
       aria-label="breadcrumbs"
     >
       <IconHome />
       <NuxtLink
-        class="text-xs text-gray-600 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 no-underline hover:underline"
+        class="text-xs text-gray-600 no-underline dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 hover:underline"
         to="/"
       >
         Home</NuxtLink
@@ -28,18 +28,18 @@
     <h2>News</h2>
   </div>
 
-  <ul class="list-none m-0 mt-7 p-0">
+  <ul class="p-0 m-0 list-none mt-7">
     <li
       v-for="page in news"
       :key="page._path"
-      class="leading-tight mb-5 ml-0 pl-0"
+      class="pl-0 mb-5 ml-0 leading-tight"
     >
       <NuxtLink
         :to="page._path"
         class="text-lg/snug max-w-[55ch] block"
         ><span v-html="page.title"
       /></NuxtLink>
-      <small class="text-sm block mt-0">
+      <small class="block mt-0 text-sm">
         {{ formatDate(page.date, { dateStyle: "medium" }) }}
       </small>
     </li>
