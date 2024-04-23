@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="font-light text-sm/snug">
+  <div class="font-light text-base/snug">
     {{ formatDate(date, { month: options.month, day: options.day }) }}
     <span>, </span>
     {{ formatDate(date, { year: options.year }) }}

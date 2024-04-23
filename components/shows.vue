@@ -105,7 +105,7 @@
         <select
           id="year"
           v-model="year"
-          class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm md:text-base"
+          class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm sm:text-base"
         >
           <option
             disabled
@@ -140,7 +140,7 @@
 
     <div v-if="dates.length > 0">
       <table
-        class="hidden sm:block mb-2 mt-7 prose-td:text-md prose-td:text-sm prose-td:lg:text-lg"
+        class="hidden sm:block mb-2 mt-7 prose-td:text-md prose-td:text-sm prose-td:sm:text-lg"
         :aria-labelledby="`table-label-${upcoming ? 'upcoming' : 'old'}`"
       >
         <thead>
@@ -232,7 +232,7 @@
         </tbody>
       </table>
     </div>
-    <div class="flex flex-col gap-4 sm:hidden not-prose mt-4">
+    <div class="flex flex-col gap-4 sm:hidden not-prose my-4">
       <div
         v-for="(show, index) in dates"
         :key="index"
@@ -243,13 +243,13 @@
         />
         <ShowVenue :venue="show.venue" />
         <p class="not-prose leading-6">
-          {{ show.city }}
+          {{ show.city }},
           {{ show.country }}
         </p>
         <p
           v-if="show.info"
           v-html="show.info"
-          class="text-sm/tight text-gray-700 dark:text-gray-500 not-prose leading-0 p-0 m-0"
+          class="text-sm/tight font-light text-gray-700 dark:text-gray-500 not-prose leading-0 p-0 m-0"
         />
         <Tickets
           :show="show"
