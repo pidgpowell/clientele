@@ -1,4 +1,4 @@
-date,venue,city,country,info,ticket-url
+date,venue,city,country,info,ticket-url,ticket-url2
 2004-02-28,Auditori les Basses,Barcelona,Spain,,
 2004-03-01,Colegio Mayor Luis Vives,Valencia,Spain,,
 2004-03-02,Sala Ricoamor,Castellon,Spain,,
@@ -264,4 +264,3 @@ date,venue,city,country,info,ticket-url
 2024-07-27,Cats Cradle,"Chapel Hill, NC",US,MergeFest 35,https://mergerecords.com/news/6149
 2024-07-11,The Royal Albert Hall,London,England,Opening for War on Drugs,
 2024-07-29,Johnny Brenda's,"Philadelphia, PA",US,,http://tinyurl.com/y8xw7k4a
-2024-07-30,Le Poisson Rouge,"New York, NY",US,,http://tinyurl.com/yc36dsy3
