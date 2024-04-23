@@ -61,7 +61,7 @@
 
     <NuxtLink
       to="/shows"
-      class="inline-block border-1 mt-2 px-4 py-3 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
+      class="mt-6 block max-w-fit border-1 px-4 py-2 border-black border-solid border dark:border-gray-600 rounded-md no-underline hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       See all shows
     </NuxtLink>
