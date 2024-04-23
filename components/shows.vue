@@ -89,7 +89,7 @@
   <div class="block">
     <div class="flex flex-col justify-end xs:flex-row xs:items-center gap-2">
       <h2
-        class="!mt-0 mr-auto !mb-0"
+        class="!mt-0 me-auto !mb-0"
         v-html="label"
         :id="`table-label-${upcoming ? 'upcoming' : 'old'}`"
       />
@@ -125,7 +125,7 @@
         </select>
         <label
           for="search"
-          class="sr-only w-full"
+          class="w-full sr-only"
           >Search</label
         >
         <input
@@ -214,7 +214,7 @@
                 <span
                   v-if="show.info"
                   v-html="show.info"
-                  class="text-sm text-gray-700 dark:text-gray-500"
+                  class="text-sm text-gray-700 dark:text-gray-500 mt-1"
                 />
                 <ShowTickets
                   :show="show"
@@ -242,14 +242,14 @@
           :options="mobileDateFormat"
         />
         <ShowVenue :venue="show.venue" />
-        <p class="not-prose leading-6">
+        <p class="leading-none">
           {{ show.city }},
           {{ show.country }}
         </p>
         <p
           v-if="show.info"
           v-html="show.info"
-          class="p-0 m-0 font-light text-gray-700 text-sm/tight dark:text-gray-500 not-prose leading-0"
+          class="p-0 mt-1 font-light text-gray-700 text-sm/tight dark:text-gray-500"
         />
         <ShowTickets
           :show="show"

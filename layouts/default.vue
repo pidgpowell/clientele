@@ -77,7 +77,7 @@
   <div
     class="h-screen px-4 pt-2 pb-4 mb-2 sm:p-16 sm:pt-10 sm:pb-4 grid gap-8 font-body"
   >
-    <div class="flex flex-col pr-1 gap-4 sm:pr-0">
+    <div class="flex flex-col pe-1 gap-4 sm:pe-0">
       <nav
         class="flex mb-4 gap-4"
         role="navigation"
@@ -118,14 +118,14 @@
         </h1>
       </NuxtLink>
 
-      <div class="grid grid-cols-3 gap-2 sm:gap-4 ml-auto mt-1.5">
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 ms-auto mt-1.5">
         <x url="https://twitter.com/theclientele" />
         <instagram url="https://www.instagram.com/theclienteleband/" />
         <facebook url="https://www.facebook.com/theclienteleofficial" />
       </div>
 
       <main
-        class="prose dark:prose-invert prose-h2:font-bold prose-h2:mb-0 prose-h2:mt-4 md:prose-h2:text-3xl prose-h2:text-xl prose-p:text-lg prose-a:outline-none focus-visible:prose-a:ring-2 -mt-4 md:-mt-12 xl:-mt-[5%] ml-[3.4vw] py-0 pl-0 border-none md:border-1 md:border-solid sm:py-2 md:pl-[3.7vw] border-l md:border-l-1 md:border-gray-200 dark:md:border-gray-700"
+        class="prose dark:prose-invert prose-h2:font-bold prose-h2:mb-0 prose-h2:mt-4 md:prose-h2:text-3xl prose-h2:text-xl prose-p:text-lg prose-a:outline-none focus-visible:prose-a:ring-2 -mt-4 md:-mt-12 xl:-mt-[5%] ms-[3.4vw] py-0 ps-0 border-none md:border-1 md:border-solid sm:py-2 md:ps-[3.7vw] border-s md:border-gray-200 dark:md:border-gray-700"
         :class="{
           'md:max-w-[59vw]': !route.path.includes('/shows'),
           'max-w-4xl': route.path.includes('/shows'),

@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <p class="text-sm m-0 p-0 not-prose">
+  <p class="mt-1 text-sm not-prose">
     <span
       v-if="hasSecondTicketVendor"
       class="block mt-1 whitespace-nowrap sm:mt-0"
@@ -20,7 +20,7 @@
     </span>
     <a
       v-if="show['ticket-url']"
-      class="block mt-0 mr-1 underline sm:inline-block"
+      class="block mt-0 underline me-1 sm:inline-block"
       :href="show['ticket-url']"
       rel="noopener noreferrer"
     >

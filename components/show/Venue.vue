@@ -5,8 +5,7 @@
 
 <template>
   <span
-    class="font-semibold text-gray-700 text-lg/tight sm:font-medium dark:text-gray-200"
+    class="font-semibold text-gray-700 text-lg/none sm:font-medium dark:text-gray-200"
+    >{{ venue }}</span
   >
-    {{ venue }}
-  </span>
 </template>
