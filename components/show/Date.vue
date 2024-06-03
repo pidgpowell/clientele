@@ -3,8 +3,6 @@
     date: string;
     options?: { month: string; day: string; year: string };
   }>();
-
-  const formatDate = useDateFormat();
 </script>
 
 <template>

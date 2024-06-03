@@ -2,7 +2,6 @@
   const { data } = await useAsyncData("news-home", () =>
     queryContent("news").sort({ date: -1 }).limit(1).find()
   );
-  const formatDate = useDateFormat();
   const excerpt = true;
 
   useHead({

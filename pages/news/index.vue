@@ -1,5 +1,4 @@
 <script setup>
-  const formatDate = useDateFormat();
   const news = await queryContent("news")
     .sort({ date: -1 })
     .limit(3)

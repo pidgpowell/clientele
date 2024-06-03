@@ -24,7 +24,6 @@
   let search = ref("");
   let currentSort = ref("date");
   let year = ref("");
-  const formatDate = useDateFormat();
   const getRawShowsData = await queryContent("shows").findOne();
   // sort tour dates
   const years = computed(() => {
