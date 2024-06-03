@@ -1,6 +1,5 @@
 <script setup>
   const { venue } = defineProps(["venue"]);
-  const formatDate = useDateFormat();
 </script>
 
 <template>

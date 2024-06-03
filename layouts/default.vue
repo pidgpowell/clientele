@@ -8,8 +8,6 @@
   const primaryLight = "#fff";
   const primaryHover = "#000";
 
-  const formatDate = useDateFormat();
-
   useHead({
     titleTemplate: (titleChunk) => {
       return titleChunk

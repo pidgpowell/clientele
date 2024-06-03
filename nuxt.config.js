@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => ['-'].includes(tag),
+      isCustomElement: (tag) => ['lite-youtube'].includes(tag),
     },
   },
 

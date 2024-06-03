@@ -1,6 +1,5 @@
 <script setup>
   const { path } = useRoute();
-  const formatDate = useDateFormat();
 </script>
 
 <template>

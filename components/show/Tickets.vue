@@ -2,6 +2,7 @@
   const { show } = defineProps(["show"]);
 
   const getDomainFromUrl = (url) => {
+    if (!url) return "";
     const urlObj = new URL(url);
     const parts = urlObj.hostname.split(".");
     const domain = parts.length > 1 ? parts.slice(-2).join(".") : parts[0];
