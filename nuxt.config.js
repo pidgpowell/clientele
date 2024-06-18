@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   ssr: true,
 
+  future: {
+    compatibilityVersion: 4,
+  },
+
   modules: [
     "@nuxt/content",
     "@nuxt/image",
