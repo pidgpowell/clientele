@@ -19,7 +19,7 @@
       class="block mt-1 whitespace-nowrap sm:mt-0"
       >Buy Tickets:
     </span>
-    <div class="flex gap-2">
+    <span class="flex gap-2">
       <a
         v-if="show['ticket-url']"
         class="block mt-0 pt-0.5 pb-1 px-2 border-gray-400 rounded-sm border sm:p-0 sm:border-none underline sm:inline-block"
@@ -39,6 +39,6 @@
       >
         {{ getDomainFromUrl(show["ticket-url2"]) }}
       </a>
-    </div>
+    </span>
   </p>
 </template>
