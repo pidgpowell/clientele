@@ -92,41 +92,20 @@
         v-html="label"
         :id="`table-label-${upcoming ? 'upcoming' : 'old'}`"
       />
-      <div
-        class="flex gap-2"
-        v-if="!upcoming"
-      >
-        <label
-          for="year"
-          class="sr-only"
-          >Year</label
-        >
+      <div class="flex gap-2" v-if="!upcoming">
+        <label for="year" class="sr-only">Year</label>
         <select
           id="year"
           v-model="year"
           class="form-select border-gray-300 dark:bg-black dark:border-gray-600 rounded-sm w-full max-w-[100px] md:max-w-[150px] px-2 py-1 text-sm sm:text-base"
         >
-          <option
-            disabled
-            selected
-            value=""
-          >
-            Year
-          </option>
+          <option disabled selected value="">Year</option>
           <option value="">All Years</option>
-          <option
-            v-for="(year, index) in years"
-            :value="year"
-            :key="index"
-          >
+          <option v-for="(year, index) in years" :value="year" :key="index">
             {{ year }}
           </option>
         </select>
-        <label
-          for="search"
-          class="w-full sr-only"
-          >Search</label
-        >
+        <label for="search" class="w-full sr-only">Search</label>
         <input
           id="search"
           type="search"
@@ -195,20 +174,17 @@
           </tr>
         </thead>
         <tbody class="leading-tight">
-          <tr
-            v-for="(show, index) in dates"
-            :key="index"
-          >
+          <tr v-for="(show, index) in dates" :key="index">
             <td class="font-light whitespace-nowrap">
               <ShowDate :date="show.date" />
             </td>
             <td
-              class="flex flex-col items-start font-normal break-all leading-0 md:break-normal"
+              class="flex flex-col items-start font-normal leading-0 break-normal"
             >
               <ShowVenue :venue="show.venue" />
 
               <div
-                class="flex flex-col flex-wrap text-sm leading-tight lg:flex-row gap-1"
+                class="flex flex-wrap text-sm leading-tight flex-row gap-y-0 gap-x-1"
               >
                 <span
                   v-if="show.info"
@@ -232,14 +208,8 @@
       </table>
     </div>
     <div class="flex flex-col my-4 gap-4 sm:hidden not-prose">
-      <article
-        v-for="(show, index) in dates"
-        :key="index"
-      >
-        <ShowDate
-          :date="show.date"
-          :options="mobileDateFormat"
-        />
+      <article v-for="(show, index) in dates" :key="index">
+        <ShowDate :date="show.date" :options="mobileDateFormat" />
         <ShowVenue :venue="show.venue" />
         <p class="leading-none">
           {{ show.city }},
@@ -250,17 +220,11 @@
           v-html="show.info"
           class="p-0 mt-1 font-light text-gray-700 text-sm/tight dark:text-gray-500"
         />
-        <ShowTickets
-          :show="show"
-          v-if="upcoming && show['ticket-url']"
-        />
+        <ShowTickets :show="show" v-if="upcoming && show['ticket-url']" />
       </article>
     </div>
   </div>
-  <p
-    v-if="dates.length === 0"
-    class="mb-6 font-light text-gray-500"
-  >
+  <p v-if="dates.length === 0" class="mb-6 font-light text-gray-500">
     No shows scheduled.
   </p>
 </template>
