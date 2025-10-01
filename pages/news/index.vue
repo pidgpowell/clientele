@@ -31,7 +31,7 @@
     <li
       v-for="page in news"
       :key="page._path"
-      class="mb-5 leading-tight ps-0 ms-0"
+      class="!mb-5 leading-tight ps-0 ms-0"
     >
       <NuxtLink
         :to="page._path"

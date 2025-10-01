@@ -44,7 +44,7 @@
       <NuxtLink
         v-if="excerpt && post.excerpt"
         :to="post._path"
-        class="px-4 py-3 no-underline border border-black border-solid border-1 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+        class="mt-2 inline-block px-4 py-3 no-underline border border-black border-solid border-1 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
       >
         Read more
       </NuxtLink>
