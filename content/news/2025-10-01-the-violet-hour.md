@@ -1,6 +1,6 @@
 ---
 title: The Violet Hour
-date: 2025-11-01
+date: 2025-10-01
 ---
 
 ![Photo of the sleeve and vinyl for The Violet Hour LP](https://d1rgjmn2wmqeif.cloudfront.net/extra/ReleaseFormat-1800744-323083.jpg){height="500" sizes="500px lg:900px" width="500"}
