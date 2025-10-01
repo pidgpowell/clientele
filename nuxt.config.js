@@ -8,6 +8,12 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss"
   ],
 
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
+  },
+
   image: {
     domains: ['pbs.twimg.com', 'dispatch-public.s3.amazonaws.com']
   },
