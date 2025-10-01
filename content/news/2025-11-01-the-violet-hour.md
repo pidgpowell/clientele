@@ -15,7 +15,7 @@ The Clientele stretch the early evening of The Violet Hour out infinitely, manip
 
 The Violet Hour has endured decades later as a signature album in The Clientele’s catalog, not only perfecting the sound that made the band a message-board phenomenon but revealing entirely new depth to it. In its wake, it was no longer possible to declare them one of the best-kept secrets in indie pop. The Clientele were, and remain, one of the genre’s most important figures, and The Violet Hour was, and remains, one of their most vital statements: a lush invitation to their underground.
 
-![Cover art for The Violet Hour LP](https://d1rgjmn2wmqeif.cloudfront.net/r/b/535541.jpg){height="200" sizes="400px lg:800px" width="200"}
+![Photo of the sleeve and vinyl for The Violet Hour LP](https://d1rgjmn2wmqeif.cloudfront.net/r/b/535541.jpg){height="200" sizes="400px lg:800px" width="200"}
 
 Track List:
 
