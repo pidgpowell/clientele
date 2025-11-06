@@ -16,7 +16,6 @@
     "nuxt": "^4.2.0"
   },
   "dependencies": {
-    "better-sqlite3": "^12.4.1",
     "sort-es": "^1.7.10"
   }
 }
