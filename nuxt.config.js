@@ -1,11 +1,13 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
 
+  compatibilityDate: '2025-11-06',
+
   modules: [
-    "@nuxt/content",
-    "@nuxt/image",
-    "@nuxtjs/tailwindcss"
+    '@nuxt/content',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss'
   ],
 
   content: {
@@ -20,10 +22,11 @@ export default defineNuxtConfig({
 
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => ['lite-youtube'].includes(tag),
-    },
+      isCustomElement: (tag) => ['lite-youtube'].includes(tag)
+    }
   },
 
-  devtools: false,
-  compatibilityDate: "2025-01-04"
+  devtools: {
+    enabled: false
+  },
 });
