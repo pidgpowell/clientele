@@ -7,7 +7,7 @@ It is deployed via Vercel to this url:
 
 See below for local development steps:
 
-# Nuxt 3 Minimal Starter
+# Nuxt 4 Minimal Starter
 
 Look at the [nuxt 4 documentation]([https://nuxtjs.org](https://nuxt.com/docs/4.x/getting-started/introduction)) to learn more.
 
