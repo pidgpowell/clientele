@@ -5,7 +5,11 @@
 - **Nuxt** `^4.5.2`, SSR enabled, deployed on **Vercel** (`vercel.json`
   defines only legacy-path redirects: `/discography`, `/blogs/:path*`,
   `/lyrics/:path*` → `/`).
-- **`@nuxt/content ^2.13.4`** — markdown + CSV content source.
+- **`@nuxt/content ^3.16.1`** — SQL-backed (via **`better-sqlite3`**), schema-defined
+  collections configured in `content.config.ts` at the repo root (`news`
+  markdown collection, `shows` CSV data collection). Upgraded from v2 on
+  2026-09-27; queries now go through `queryCollection()` instead of the old
+  `queryContent()`.
 - **`@nuxt/image ^2.1.0`** — remote domains allow-listed to
   `pbs.twimg.com` and `dispatch-public.s3.amazonaws.com`.
 - **`@nuxtjs/tailwindcss ^6.14.0`** + `@tailwindcss/forms` /
@@ -34,8 +38,9 @@ app/
   utils/            formatDate.js  (auto-imported)
 content/
   news/*.md         markdown posts (Nuxt Studio-edited)
-  shows.csv         tour dates, queried as a Nuxt Content collection
+  shows.csv         tour dates, queried as a Nuxt Content data collection
 public/             favicons, one static image
+content.config.ts    Nuxt Content v3 collection definitions (news, shows)
 ```
 
 There is no `server/`, `middleware/`, `plugins/`, `composables/`, or
@@ -48,12 +53,16 @@ custom server logic.
   `<!--more-->` marker for excerpts, images use Nuxt Content's inline
   attribute syntax (e.g. `{height="500" width="500"}`).
 - **Shows**: `content/shows.csv` (columns: `date,venue,city,country,info,
-  ticket-url,ticket-url2`), loaded via `queryContent("shows").findOne()` in
-  `app/components/Shows.vue` and filtered/sorted client-side (year filter,
-  free-text search, column sort via `sort-es`), rendered as a table on
-  desktop and cards on mobile. Treating a CSV as a Nuxt Content collection
-  is atypical — most Nuxt Content setups use markdown/YAML/JSON — so don't
-  be surprised it doesn't look like the rest of the content pipeline.
+  ticket-url,ticket-url2`) is a v3 `data` collection defined in
+  `content.config.ts` with `source: 'shows.csv'` (single-file, non-glob
+  source — v3 treats each CSV row as its own collection item rather than
+  nesting rows under a `body` array). Loaded via
+  `queryCollection("shows").all()` in `app/components/Shows.vue` and
+  filtered/sorted entirely client-side (year filter, free-text search,
+  column sort via `sort-es`), rendered as a table on desktop and cards on
+  mobile. CSV as a Nuxt Content source is still somewhat atypical
+  (most collections are markdown/YAML/JSON) but is natively supported by
+  v3 — see https://content.nuxt.com/docs/files/csv.
 
 ## Notable patterns & quirks
 
@@ -74,6 +83,24 @@ custom server logic.
   boundary when displayed in the site's target timezone, but treat it as
   a fragile, unexplained behavior rather than settled logic if you touch
   date rendering.
+- **`npm install-scripts` gate**: this npm setup blocks native postinstall
+  scripts unless the package/version is explicitly listed in
+  `package.json`'s `allowScripts`. `better-sqlite3` (required by
+  `@nuxt/content` v3) and `esbuild` both need their native build/install
+  step approved via `npm install-scripts approve <pkg>` (then
+  `npm rebuild <pkg>` for build-step packages) after `npm install` —
+  otherwise `nuxt build`/`nuxt dev` fail with "Nuxt Content requires
+  better-sqlite3" or a broken esbuild binary.
+- **Dev-mode content cache can go stale**: `nuxt dev`'s local database
+  (`.data/content/contents.sqlite`) caches parsed content incrementally.
+  During active editing of `content/shows.csv` we saw it retain a stray
+  edit (`"XXXX"` typed then reverted in a venue name) even after the file
+  on disk was back to its original content — the dev server's HMR
+  re-parse didn't fully invalidate that row. If shows/news data looks
+  wrong/stale in dev despite the file being correct, stop `nuxt dev`,
+  `rm -rf .data`, and restart rather than assuming the query code is
+  broken.
+  better-sqlite3" or a broken esbuild binary.
 
 ## Gaps to be aware of
 

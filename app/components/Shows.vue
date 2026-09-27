@@ -24,12 +24,12 @@
   let search = ref("");
   let currentSort = ref("date");
   let year = ref("");
-  const getRawShowsData = await queryContent("shows").findOne();
+  const shows = await queryCollection("shows").all();
   // sort tour dates
   const years = computed(() => {
     return [
       ...new Set(
-        getRawShowsData.body
+        shows
           // simple search
           .map((item) => {
             let options = { year: "numeric" };
@@ -59,7 +59,7 @@
   };
 
   const dates = computed(() => {
-    return getRawShowsData.body
+    return shows
       .filter(filterByYear)
       .filter(filterByUpcoming)
       .filter(filterBySearch)

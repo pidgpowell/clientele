@@ -1,9 +1,9 @@
 <script setup>
-  const news = await queryContent("news")
-    .sort({ date: -1 })
+  const news = await queryCollection("news")
+    .select("path", "date", "title")
+    .order("date", "DESC")
     .limit(3)
-    .only(["_path", "date", "title"])
-    .find();
+    .all();
 
   useHead({
     title: "News",
@@ -30,11 +30,11 @@
   <ul class="p-0 m-0 list-none mt-7">
     <li
       v-for="page in news"
-      :key="page._path"
+      :key="page.path"
       class="!mb-5 leading-tight ps-0 ms-0"
     >
       <NuxtLink
-        :to="page._path"
+        :to="page.path"
         class="text-lg/snug max-w-[55ch] block"
         ><span v-html="page.title"
       /></NuxtLink>
