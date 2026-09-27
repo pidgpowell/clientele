@@ -167,6 +167,9 @@
               />
             </button>
           </th>
+          <th class="shows-extra">
+            <span class="sr-only">Tickets</span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -178,24 +181,26 @@
           <td class="font-light whitespace-nowrap">
             <ShowDate :date="show.date" />
           </td>
-          <td class="flex flex-col items-start font-normal leading-0 break-normal">
+          <td class="font-normal leading-0 break-normal">
             <ShowVenue :venue="show.venue" />
-
-            <div class="flex flex-wrap text-sm leading-tight flex-row gap-y-0 gap-x-1">
-              <span
-                v-if="show.info"
-                v-html="show.info"
-                class="text-sm text-gray-700 dark:text-gray-500 mt-1"
-              />
-              <ShowTickets
-                :show="show"
-                v-if="upcoming && show['ticket-url']"
-              />
-            </div>
           </td>
           <td class="shows-location">
             <span class="shows-city break-all md:break-normal text-base">{{ show.city }}</span>
             <span class="shows-country break-all md:break-normal text-base">{{ show.country }}</span>
+          </td>
+          <td
+            v-if="show.info || (upcoming && show['ticket-url'])"
+            class="shows-extra flex flex-wrap text-sm leading-tight flex-row gap-y-0 gap-x-1"
+          >
+            <span
+              v-if="show.info"
+              v-html="show.info"
+              class="text-sm text-gray-700 dark:text-gray-500 mt-1"
+            />
+            <ShowTickets
+              :show="show"
+              v-if="upcoming && show['ticket-url']"
+            />
           </td>
         </tr>
       </tbody>
@@ -302,6 +307,10 @@
       border-bottom: 1px solid var(--tw-prose-th-borders);
     }
 
+    .shows-table :where(tbody .shows-row:not(:last-child)) {
+      border-bottom: 1px solid var(--tw-prose-td-borders);
+    }
+
     .shows-table :where(td, th) {
       display: block;
       min-width: 0;
@@ -313,15 +322,20 @@
       color: var(--tw-prose-headings);
     }
 
-    .shows-table :where(tr > :first-child) {
+    /*
+     * DOM order is date, venue, location, extra (info/tickets) - that's
+     * the order mobile needs (extra reads after City/Country there,
+     * since mobile is plain block stacking in DOM order). Desktop
+     * repositions `.shows-extra` under Venue via grid-column/grid-row
+     * instead, so first/last-child no longer lines up with the visually
+     * first/last column - target them by class instead.
+     */
+    .shows-table :where(.shows-row td:first-child, .shows-row--header th:first-child) {
       padding-inline-start: 0;
     }
 
-    .shows-table :where(tr > :last-child) {
-      padding-inline-end: 0;
-    }
-
     .shows-table :where(.shows-location) {
+      padding-inline-end: 0;
       display: grid;
       grid-column: 3 / 5;
       grid-template-columns: subgrid;
@@ -345,6 +359,19 @@
 
     .shows-location .shows-country::before {
       content: none;
+    }
+
+    /*
+     * `.shows-extra` (info/tickets) sits under Venue - a second row in
+     * the same column - rather than after City/Country like the DOM
+     * order (which mobile needs). The header's matching cell is
+     * sr-only-labelled and collapses to zero height since it has no
+     * visible content, so it doesn't introduce a visible 4th row.
+     */
+    .shows-extra {
+      grid-column: 2;
+      grid-row: 2;
+      padding-block-start: 0;
     }
   }
 </style>
