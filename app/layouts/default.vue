@@ -41,30 +41,24 @@
         style: "image/png",
         href: "/favicon.png",
       },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossorigin: true,
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
-      },
     ],
   });
 
-  useSeoMeta({
-    ogImage:
+  const img = useImage();
+  const socialImage = new URL(
+    img(
       "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
+      { width: 1200, height: 630, fit: "cover", format: "jpeg" }
+    ),
+    "https://theclientele.co.uk"
+  ).href;
+
+  useSeoMeta({
+    ogImage: socialImage,
     ogUrl: "https://theclientele.co.uk",
     twitterTitle: "The Clientele",
     twitterDescription: "Official website of The Clientele",
-    twitterImage:
-      "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
+    twitterImage: socialImage,
     twitterCard: "Official website of The Clientele",
   });
 
