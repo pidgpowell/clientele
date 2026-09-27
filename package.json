@@ -5,7 +5,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "regen": "npm run generate && npm run preview"
+    "regen": "npm run generate && npm run preview",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "devDependencies": {
     "@nuxt/content": "^3.16.1",
