@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   ssr: true,
 
-  compatibilityDate: '2025-11-05',
+  compatibilityDate: '2026-09-27',
 
   modules: [
     '@nuxt/content',
