@@ -11,9 +11,19 @@
   2026-09-27; queries now go through `queryCollection()` instead of the old
   `queryContent()`.
 - **`@nuxt/image ^2.1.0`** — remote domains allow-listed to
-  `pbs.twimg.com` and `dispatch-public.s3.amazonaws.com`.
+  `pbs.twimg.com`, `dispatch-public.s3.amazonaws.com`, and
+  `d1rgjmn2wmqeif.cloudfront.net` (Merge Records' CDN, used by news post
+  images). Any image host used in markdown content **must** be added here
+  or `<NuxtImg>`/`ProseImg` silently falls back to serving the original,
+  un-resized file for every `srcset` breakpoint — no error, just no
+  optimization. Check this list whenever a new content image host shows up.
+- **`@nuxt/fonts`** — self-hosts Public Sans at build time (see note below);
+  no runtime request to Google Fonts.
 - **`@nuxtjs/tailwindcss ^6.14.0`** + `@tailwindcss/forms` /
   `@tailwindcss/typography`.
+- **`routeRules`** in `nuxt.config.js` prerender `/`, `/news`, `/news/**`,
+  and `/shows` at build time (content only changes on a new deploy, so
+  there's no reason to re-run SSR per request for these).
 - **`sort-es`** — the only runtime `dependency`; everything else (including
   Nuxt itself) is a `devDependency`. Used for client-side sorting in the
   shows table.
@@ -100,7 +110,22 @@ custom server logic.
   wrong/stale in dev despite the file being correct, stop `nuxt dev`,
   `rm -rf .data`, and restart rather than assuming the query code is
   broken.
-  better-sqlite3" or a broken esbuild binary.
+- **`@nuxt/fonts` + variable fonts**: Public Sans is self-hosted via
+  `@nuxt/fonts` (see `fonts.families` in `nuxt.config.js`), replacing the
+  old runtime `fonts.googleapis.com` stylesheet link. Google now serves
+  Public Sans as a variable-only font — requesting discrete weights
+  (`weights: [300, 400, ...]`) makes every "weight" resolve to the *same*
+  variable file, and `@nuxt/fonts` emits one `@font-face` per discrete
+  weight anyway, so without a range every weight renders identically
+  (the browser needs `font-weight: 300 700`, a range, to interpolate a
+  variable font). The config uses `weights: ['300 700']` for exactly this
+  reason — don't switch it back to a discrete list without checking that
+  Tailwind's `font-light`/`font-medium`/etc. still render distinctly.
+- **`useImage()` for non-`<NuxtImg>` image URLs** (e.g. `og:image`): it
+  returns a **root-relative** path when the image is served through the
+  local IPX endpoint, not an absolute URL. Social meta tags require an
+  absolute URL, so wrap it in `new URL(path, 'https://theclientele.co.uk')`
+  — see `app/layouts/default.vue`.
 
 ## Gaps to be aware of
 
