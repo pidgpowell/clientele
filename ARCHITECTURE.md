@@ -63,23 +63,24 @@ custom server logic.
   `<!--more-->` marker for excerpts, images use Nuxt Content's inline
   attribute syntax (e.g. `{height="500" width="500"}`).
 - **Shows**: `content/shows.csv` (columns: `date,venue,city,country,info,
-  ticket-url,ticket-url2`) is a v3 `data` collection defined in
+ticket-url,ticket-url2`) is a v3 `data` collection defined in
   `content.config.ts` with `source: 'shows.csv'` (single-file, non-glob
   source — v3 treats each CSV row as its own collection item rather than
   nesting rows under a `body` array). Loaded via
   `queryCollection("shows").all()` in `app/components/Shows.vue` and
   filtered/sorted entirely client-side (year filter, free-text search,
-  column sort via `sort-es`), rendered as a table on desktop and cards on
-  mobile. CSV as a Nuxt Content source is still somewhat atypical
-  (most collections are markdown/YAML/JSON) but is natively supported by
-  v3 — see https://content.nuxt.com/docs/files/csv.
+  column sort via `sort-es`). CSV as a Nuxt Content source is still
+  somewhat atypical (most collections are markdown/YAML/JSON) but is
+  natively supported by v3 — see https://content.nuxt.com/docs/files/csv.
+  Rendered as a single real `<table>` for both mobile and desktop — see
+  the CSS Grid/subgrid note below.
 
 ## Notable patterns & quirks
 
 - **Vendored YouTube embed**: `app/components/vendor/lite-youtube.js` is a
   hand-copied `lite-youtube-embed` custom element (not an npm package). It's
   registered as a valid custom element via `vue.compilerOptions
-  .isCustomElement` in `nuxt.config.js`, and used through
+.isCustomElement` in `nuxt.config.js`, and used through
   `app/components/content/EmbedYouTube.vue` (dynamically imported inside
   `<client-only>`) as a Nuxt Content prose component. It still carries a
   stray `/* eslint-disable */` comment from wherever it was copied from,
@@ -114,7 +115,7 @@ custom server logic.
   `@nuxt/fonts` (see `fonts.families` in `nuxt.config.js`), replacing the
   old runtime `fonts.googleapis.com` stylesheet link. Google now serves
   Public Sans as a variable-only font — requesting discrete weights
-  (`weights: [300, 400, ...]`) makes every "weight" resolve to the *same*
+  (`weights: [300, 400, ...]`) makes every "weight" resolve to the _same_
   variable file, and `@nuxt/fonts` emits one `@font-face` per discrete
   weight anyway, so without a range every weight renders identically
   (the browser needs `font-weight: 300 700`, a range, to interpolate a
@@ -126,9 +127,89 @@ custom server logic.
   local IPX endpoint, not an absolute URL. Social meta tags require an
   absolute URL, so wrap it in `new URL(path, 'https://theclientele.co.uk')`
   — see `app/layouts/default.vue`.
+- **`app/components/Shows.vue`'s table is one real `<table>` for both
+  mobile and desktop**, not separate markup per breakpoint (that used to
+  double the DOM size). Below `md:` (768px, not the usual `sm:` — see
+  why below) every table element is just `display: block`, stacking in
+  DOM order like a card; above it, the `<table>` becomes a CSS Grid and
+  every `<tr>`/`<td>` inherits the same column tracks via **subgrid** so
+  columns stay aligned across all ~270 rows without a per-row width
+  calculation. City/Country stay one semantic `<td>`/`<th>` (so the
+  header's cell count matches the body's) but that cell is _itself_ a
+  nested subgrid, letting City/Country present as two aligned
+  sub-columns on desktop while reading as "City, Country" on mobile.
+  Things worth knowing if you touch this file:
+  - The breakpoint is `md:` (768px), not Tailwind's usual `sm:` (640px),
+    and `app/components/show/Venue.vue` / `Tickets.vue`'s own internal
+    responsive classes were moved from `sm:` to `md:` to match — those
+    two components are only ever used inside `Shows.vue`, so this is
+    safe, but don't reintroduce a `sm:` in either without changing this
+    one too, or the row layout and the cell styling will flip at
+    different widths.
+  - Grid items get an implicit `min-width: auto`, which pins a column to
+    its widest cell's max-content size forever — even with
+    `break-normal`/`break-all` on the text. Every `td`/`th` (and the
+    nested city/country cells) needs an explicit `min-width: 0` or one
+    unusually long venue/city name anywhere in the ~270-row dataset
+    pushes the whole table wider than its container.
+  - Overriding a `<table>`'s `display` to `grid` also drops its native
+    shrink-to-fit sizing (tables are intrinsically sized; a `display:
+grid` box is block-level and fills its container) — don't reach for
+    `width: fit-content` to compensate; use `minmax(0, auto)` tracks and
+    let content decide.
+  - Real `<table>` semantics were chosen deliberately over generic
+    `<div role="table">` elements. Each show is **one or two `<tr>`s**
+    (via a `<template v-for>` in `<tbody>`): a main row (date, venue,
+    location) and an optional `.shows-row--extra` row for info/tickets,
+    rendered only when there's content to show (`v-if`) — so most shows
+    have one `<tr>`, not two. This (not a second cell crammed into the
+    main row) is what lets DOM order put info/tickets after City/Country
+    on mobile (matching the pre-rework cards) while desktop repositions
+    `.shows-extra`'s single `<td>` to `grid-column: 2 / 4` (spanning
+    Venue+City, under the main row) via subgrid, independent of the main
+    row's own height. An earlier version tried to fit info/tickets into
+    a _second cell of the same `<tr>`_ via `grid-row: 2` — don't go back
+    to that: a shared row's grid track sizes to its _tallest_ cell
+    across every column, so Date/Location's own padding kept inflating
+    the gap above the extra content no matter how much Venue's own
+    padding was trimmed. A genuinely separate `<tr>` has its own
+    independent height with no such coupling.
+  - Border/margin logic has to treat a show's two `<tr>`s as one unit,
+    not two adjacent rows: `.shows-row + .shows-row:not(.shows-row--extra)`
+    (mobile spacing) and `:not(:has(+ .shows-row--extra))` (desktop
+    border-bottom) exist specifically so the gap/border lands after the
+    _last_ row of each show, not between a show's own two rows. Both the
+    mobile and desktop versions of the margin rule need the identical
+    `:not(.shows-row--extra)` qualifier — mismatched specificity between
+    them (e.g. only one having it) means the loser can't override the
+    winner regardless of the media query, breaking spacing at whichever
+    breakpoint has the "weaker" selector.
+  - `colspan`/`rowspan` on a `<td>` do nothing once the table's `display`
+    is overridden to `grid` — those attributes are only meaningful under
+    the native table layout algorithm. `grid-column`/`grid-row` are
+    Grid's own equivalent.
+- **`w-full` + `sr-only` together stretch an invisible element to full
+  viewport width**: `sr-only` makes an element `position: absolute`; add
+  `w-full` and its `width: 100%` resolves against the nearest positioned
+  ancestor (or the viewport, if there isn't one) rather than its visual
+  parent, silently adding horizontal scroll. Found on the shows search
+  `<label>`; check for the same combo before adding it elsewhere.
+- **`@nuxtjs/tailwindcss`'s default `cssPath` was silently missing the
+  real stylesheet**: its default (`assets/css/tailwind.css`) resolves
+  relative to the project root, not Nuxt 4's `app/` srcDir, so it
+  couldn't find `app/assets/css/tailwind.css` and fell back to
+  Tailwind's own generic default CSS (visible as "Using default Tailwind
+  CSS file" in the build log — easy to miss, since Tailwind's base
+  utilities still work fine either way). This silently dropped _every_
+  hand-written rule in that file — `.icon`'s dark-mode color included.
+  Fixed via an explicit `tailwindcss.cssPath: '~/assets/css/tailwind.css'`
+  in `nuxt.config.js` (the `~/` alias forces srcDir-relative resolution).
+  If a custom rule from that file ever seems to just not apply, check
+  the build log for that message before assuming the CSS itself is wrong.
 
 ## Gaps to be aware of
 
 No linting, no formatting tool, no automated tests, no CI pipeline. Any
 verification of a change here is manual (`npm run dev` / `npm run build`
-+ visual check) — there's no safety net to catch regressions automatically.
+
+- visual check) — there's no safety net to catch regressions automatically.
