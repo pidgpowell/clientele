@@ -69,10 +69,11 @@ custom server logic.
   nesting rows under a `body` array). Loaded via
   `queryCollection("shows").all()` in `app/components/Shows.vue` and
   filtered/sorted entirely client-side (year filter, free-text search,
-  column sort via `sort-es`), rendered as a table on desktop and cards on
-  mobile. CSV as a Nuxt Content source is still somewhat atypical
-  (most collections are markdown/YAML/JSON) but is natively supported by
-  v3 — see https://content.nuxt.com/docs/files/csv.
+  column sort via `sort-es`). CSV as a Nuxt Content source is still
+  somewhat atypical (most collections are markdown/YAML/JSON) but is
+  natively supported by v3 — see https://content.nuxt.com/docs/files/csv.
+  Rendered as a single real `<table>` for both mobile and desktop — see
+  the CSS Grid/subgrid note below.
 
 ## Notable patterns & quirks
 
@@ -126,6 +127,48 @@ custom server logic.
   local IPX endpoint, not an absolute URL. Social meta tags require an
   absolute URL, so wrap it in `new URL(path, 'https://theclientele.co.uk')`
   — see `app/layouts/default.vue`.
+- **`app/components/Shows.vue`'s table is one real `<table>` for both
+  mobile and desktop**, not separate markup per breakpoint (that used to
+  double the DOM size). Below `md:` (768px, not the usual `sm:` — see
+  why below) every table element is just `display: block`, stacking in
+  DOM order like a card; above it, the `<table>` becomes a CSS Grid and
+  every `<tr>`/`<td>` inherits the same column tracks via **subgrid** so
+  columns stay aligned across all ~270 rows without a per-row width
+  calculation. City/Country stay one semantic `<td>`/`<th>` (so the
+  header's cell count matches the body's) but that cell is *itself* a
+  nested subgrid, letting City/Country present as two aligned
+  sub-columns on desktop while reading as "City, Country" on mobile.
+  Things worth knowing if you touch this file:
+  - The breakpoint is `md:` (768px), not Tailwind's usual `sm:` (640px),
+    and `app/components/show/Venue.vue` / `Tickets.vue`'s own internal
+    responsive classes were moved from `sm:` to `md:` to match — those
+    two components are only ever used inside `Shows.vue`, so this is
+    safe, but don't reintroduce a `sm:` in either without changing this
+    one too, or the row layout and the cell styling will flip at
+    different widths.
+  - Grid items get an implicit `min-width: auto`, which pins a column to
+    its widest cell's max-content size forever — even with
+    `break-normal`/`break-all` on the text. Every `td`/`th` (and the
+    nested city/country cells) needs an explicit `min-width: 0` or one
+    unusually long venue/city name anywhere in the ~270-row dataset
+    pushes the whole table wider than its container.
+  - Overriding a `<table>`'s `display` to `grid` also drops its native
+    shrink-to-fit sizing (tables are intrinsically sized; a `display:
+    grid` box is block-level and fills its container) — don't reach for
+    `width: fit-content` to compensate; use `minmax(0, auto)` tracks and
+    let content decide.
+  - Real `<table>` semantics were chosen deliberately over generic
+    `<div role="table">` elements — it's what a user asked for
+    specifically, and it means info/tickets stay grouped with the venue
+    cell (matching the desktop layout) instead of appearing after
+    City/Country like the pre-rework mobile cards did. That's a real,
+    known, accepted difference from the old mobile design, not a bug.
+- **`w-full` + `sr-only` together stretch an invisible element to full
+  viewport width**: `sr-only` makes an element `position: absolute`; add
+  `w-full` and its `width: 100%` resolves against the nearest positioned
+  ancestor (or the viewport, if there isn't one) rather than its visual
+  parent, silently adding horizontal scroll. Found on the shows search
+  `<label>`; check for the same combo before adding it elsewhere.
 
 ## Gaps to be aware of
 

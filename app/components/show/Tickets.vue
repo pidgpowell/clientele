@@ -13,16 +13,16 @@
 </script>
 
 <template>
-  <p class="text-sm not-prose mt-2 sm:mt-1">
+  <p class="text-sm not-prose mt-2 md:mt-1">
     <span
       v-if="hasSecondTicketVendor"
-      class="block mt-1 whitespace-nowrap sm:mt-0"
+      class="block mt-1 whitespace-nowrap md:mt-0"
       >Buy Tickets:
     </span>
     <span class="flex gap-2">
       <a
         v-if="show['ticket-url']"
-        class="block mt-0 pt-0.5 pb-1 px-2 border-gray-400 rounded-sm border sm:p-0 sm:border-none underline sm:inline-block"
+        class="block mt-0 pt-0.5 pb-1 px-2 border-gray-400 rounded-sm border md:p-0 md:border-none underline md:inline-block"
         :href="show['ticket-url']"
         rel="noopener noreferrer"
       >
@@ -33,7 +33,7 @@
       </a>
       <a
         v-if="hasSecondTicketVendor"
-        class="block underline pt-0.5 pb-1 px-2 border-gray-400 rounded-sm border sm:p-0 sm:border-none sm:inline-block"
+        class="block underline pt-0.5 pb-1 px-2 border-gray-400 rounded-sm border md:p-0 md:border-none md:inline-block"
         :href="show['ticket-url2']"
         rel="noopener noreferrer"
       >
