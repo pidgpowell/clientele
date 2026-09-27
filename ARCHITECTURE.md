@@ -63,7 +63,7 @@ custom server logic.
   `<!--more-->` marker for excerpts, images use Nuxt Content's inline
   attribute syntax (e.g. `{height="500" width="500"}`).
 - **Shows**: `content/shows.csv` (columns: `date,venue,city,country,info,
-  ticket-url,ticket-url2`) is a v3 `data` collection defined in
+ticket-url,ticket-url2`) is a v3 `data` collection defined in
   `content.config.ts` with `source: 'shows.csv'` (single-file, non-glob
   source — v3 treats each CSV row as its own collection item rather than
   nesting rows under a `body` array). Loaded via
@@ -80,7 +80,7 @@ custom server logic.
 - **Vendored YouTube embed**: `app/components/vendor/lite-youtube.js` is a
   hand-copied `lite-youtube-embed` custom element (not an npm package). It's
   registered as a valid custom element via `vue.compilerOptions
-  .isCustomElement` in `nuxt.config.js`, and used through
+.isCustomElement` in `nuxt.config.js`, and used through
   `app/components/content/EmbedYouTube.vue` (dynamically imported inside
   `<client-only>`) as a Nuxt Content prose component. It still carries a
   stray `/* eslint-disable */` comment from wherever it was copied from,
@@ -115,7 +115,7 @@ custom server logic.
   `@nuxt/fonts` (see `fonts.families` in `nuxt.config.js`), replacing the
   old runtime `fonts.googleapis.com` stylesheet link. Google now serves
   Public Sans as a variable-only font — requesting discrete weights
-  (`weights: [300, 400, ...]`) makes every "weight" resolve to the *same*
+  (`weights: [300, 400, ...]`) makes every "weight" resolve to the _same_
   variable file, and `@nuxt/fonts` emits one `@font-face` per discrete
   weight anyway, so without a range every weight renders identically
   (the browser needs `font-weight: 300 700`, a range, to interpolate a
@@ -135,7 +135,7 @@ custom server logic.
   every `<tr>`/`<td>` inherits the same column tracks via **subgrid** so
   columns stay aligned across all ~270 rows without a per-row width
   calculation. City/Country stay one semantic `<td>`/`<th>` (so the
-  header's cell count matches the body's) but that cell is *itself* a
+  header's cell count matches the body's) but that cell is _itself_ a
   nested subgrid, letting City/Country present as two aligned
   sub-columns on desktop while reading as "City, Country" on mobile.
   Things worth knowing if you touch this file:
@@ -154,7 +154,7 @@ custom server logic.
     pushes the whole table wider than its container.
   - Overriding a `<table>`'s `display` to `grid` also drops its native
     shrink-to-fit sizing (tables are intrinsically sized; a `display:
-    grid` box is block-level and fills its container) — don't reach for
+grid` box is block-level and fills its container) — don't reach for
     `width: fit-content` to compensate; use `minmax(0, auto)` tracks and
     let content decide.
   - Real `<table>` semantics were chosen deliberately over generic
@@ -168,8 +168,8 @@ custom server logic.
     `.shows-extra`'s single `<td>` to `grid-column: 2 / 4` (spanning
     Venue+City, under the main row) via subgrid, independent of the main
     row's own height. An earlier version tried to fit info/tickets into
-    a *second cell of the same `<tr>`* via `grid-row: 2` — don't go back
-    to that: a shared row's grid track sizes to its *tallest* cell
+    a _second cell of the same `<tr>`_ via `grid-row: 2` — don't go back
+    to that: a shared row's grid track sizes to its _tallest_ cell
     across every column, so Date/Location's own padding kept inflating
     the gap above the extra content no matter how much Venue's own
     padding was trimmed. A genuinely separate `<tr>` has its own
@@ -178,7 +178,7 @@ custom server logic.
     not two adjacent rows: `.shows-row + .shows-row:not(.shows-row--extra)`
     (mobile spacing) and `:not(:has(+ .shows-row--extra))` (desktop
     border-bottom) exist specifically so the gap/border lands after the
-    *last* row of each show, not between a show's own two rows. Both the
+    _last_ row of each show, not between a show's own two rows. Both the
     mobile and desktop versions of the margin rule need the identical
     `:not(.shows-row--extra)` qualifier — mismatched specificity between
     them (e.g. only one having it) means the loser can't override the
@@ -200,7 +200,7 @@ custom server logic.
   couldn't find `app/assets/css/tailwind.css` and fell back to
   Tailwind's own generic default CSS (visible as "Using default Tailwind
   CSS file" in the build log — easy to miss, since Tailwind's base
-  utilities still work fine either way). This silently dropped *every*
+  utilities still work fine either way). This silently dropped _every_
   hand-written rule in that file — `.icon`'s dark-mode color included.
   Fixed via an explicit `tailwindcss.cssPath: '~/assets/css/tailwind.css'`
   in `nuxt.config.js` (the `~/` alias forces srcDir-relative resolution).
@@ -211,4 +211,5 @@ custom server logic.
 
 No linting, no formatting tool, no automated tests, no CI pipeline. Any
 verification of a change here is manual (`npm run dev` / `npm run build`
-+ visual check) — there's no safety net to catch regressions automatically.
+
+- visual check) — there's no safety net to catch regressions automatically.

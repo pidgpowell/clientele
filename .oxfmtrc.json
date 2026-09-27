@@ -2,5 +2,6 @@
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "vueIndentScriptAndStyle": true,
   "ignorePatterns": [],
-  "printWidth": 120
+  "printWidth": 80,
+  "singleQuote": false
 }
