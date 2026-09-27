@@ -302,10 +302,6 @@
       border-bottom: 1px solid var(--tw-prose-th-borders);
     }
 
-    .shows-table :where(tbody .shows-row) {
-      border-bottom: 1px solid var(--tw-prose-td-borders);
-    }
-
     .shows-table :where(td, th) {
       display: block;
       min-width: 0;
