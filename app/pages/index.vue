@@ -15,7 +15,7 @@
       class="absolute flex items-center text-xs text-gray-500 -top-2"
       aria-label="breadcrumbs"
     >
-      <icon-home /> Home
+      <IconHome /> Home
     </nav>
 
     <div
