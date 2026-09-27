@@ -90,3 +90,6 @@ sw.*
 
 .output
 dist
+
+# Nuxt Content v3 local dev database
+.data

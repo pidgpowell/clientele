@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["content/**/*.md", "components/**/*.vue"],
+  content: ["content/**/*.md", "app/**/*.vue"],
   theme: {
     extend: {
       screens: {

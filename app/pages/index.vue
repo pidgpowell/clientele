@@ -1,6 +1,6 @@
 <script setup>
   const { data } = await useAsyncData("news-home", () =>
-    queryContent("news").sort({ date: -1 }).limit(1).find()
+    queryCollection("news").order("date", "DESC").limit(1).all()
   );
   const excerpt = true;
 
@@ -15,16 +15,16 @@
       class="absolute flex items-center text-xs text-gray-500 -top-2"
       aria-label="breadcrumbs"
     >
-      <icon-home /> Home
+      <IconHome /> Home
     </nav>
 
     <div
       v-for="post in data"
-      :key="post._id"
+      :key="post.id"
     >
       <h2>
         <NuxtLink
-          :to="post._path"
+          :to="post.path"
           class="no-underline hover:underline"
         >
           <span v-html="post.title" />
@@ -43,7 +43,7 @@
 
       <NuxtLink
         v-if="excerpt && post.excerpt"
-        :to="post._path"
+        :to="post.path"
         class="mt-2 inline-block px-4 py-3 no-underline border border-black border-solid border-1 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
       >
         Read more

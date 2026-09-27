@@ -117,9 +117,9 @@
       </NuxtLink>
 
       <div class="grid grid-cols-3 gap-2 sm:gap-4 ms-auto mt-1.5">
-        <x url="https://twitter.com/theclientele" />
-        <instagram url="https://www.instagram.com/theclienteleband/" />
-        <facebook url="https://www.facebook.com/theclienteleofficial" />
+        <X url="https://twitter.com/theclientele" />
+        <Instagram url="https://www.instagram.com/theclienteleband/" />
+        <Facebook url="https://www.facebook.com/theclienteleofficial" />
       </div>
 
       <main
