@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <p class="text-sm not-prose mt-2 md:mt-1">
+  <p class="text-sm not-prose">
     <span
       v-if="hasSecondTicketVendor"
       class="block mt-1 whitespace-nowrap md:mt-0"

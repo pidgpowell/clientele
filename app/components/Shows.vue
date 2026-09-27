@@ -173,36 +173,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr
+        <template
           v-for="(show, index) in dates"
           :key="index"
-          class="shows-row leading-tight"
         >
-          <td class="font-light whitespace-nowrap">
-            <ShowDate :date="show.date" />
-          </td>
-          <td class="font-normal leading-0 break-normal">
-            <ShowVenue :venue="show.venue" />
-          </td>
-          <td class="shows-location">
-            <span class="shows-city break-all md:break-normal text-base">{{ show.city }}</span>
-            <span class="shows-country break-all md:break-normal text-base">{{ show.country }}</span>
-          </td>
-          <td
+          <tr class="shows-row leading-tight">
+            <td class="font-light whitespace-nowrap">
+              <ShowDate :date="show.date" />
+            </td>
+            <td class="shows-venue font-normal leading-0 break-normal">
+              <ShowVenue :venue="show.venue" />
+            </td>
+            <td class="shows-location">
+              <span class="shows-city break-all md:break-normal text-base">{{ show.city }}</span>
+              <span class="shows-country break-all md:break-normal text-base">{{ show.country }}</span>
+            </td>
+          </tr>
+          <tr
             v-if="show.info || (upcoming && show['ticket-url'])"
-            class="shows-extra flex flex-wrap text-sm leading-tight flex-row gap-y-0 gap-x-1"
+            class="shows-row shows-row--extra"
           >
-            <span
-              v-if="show.info"
-              v-html="show.info"
-              class="text-sm text-gray-700 dark:text-gray-500 mt-1"
-            />
-            <ShowTickets
-              :show="show"
-              v-if="upcoming && show['ticket-url']"
-            />
-          </td>
-        </tr>
+            <td class="shows-extra flex flex-wrap text-sm leading-tight flex-row gap-y-1 gap-x-1 mb-1 text-pretty">
+              <span
+                v-if="show.info"
+                v-html="show.info"
+                class="text-sm text-gray-700 dark:text-gray-500 mt-1"
+              />
+              <ShowTickets
+                :show="show"
+                v-if="upcoming && show['ticket-url']"
+              />
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
     <p v-if="dates.length === 0" class="mb-6 font-light text-gray-500">
@@ -250,12 +253,33 @@
     display: none;
   }
 
-  .shows-row + .shows-row {
+  /*
+   * Each show is one or two <tr>s now (main row, plus an optional
+   * .shows-row--extra for info/tickets) - this gap is between *shows*,
+   * so it's excluded when the current row is a show's own extra row
+   * (that one should hug its main row tightly instead).
+   */
+  .shows-row + .shows-row:not(.shows-row--extra) {
     margin-block-start: 1rem;
   }
 
   .shows-location .shows-country::before {
     content: ", ";
+  }
+
+  /*
+   * `.shows-extra`'s own `text-sm leading-tight` utility classes and the
+   * table's `prose-td:*` size utilities (meant for Date/Venue/Location)
+   * are the same specificity, and prose-td happened to win the cascade
+   * tie at every breakpoint - silently overriding this cell's font-size/
+   * line-height instead of the smaller size its own classes ask for.
+   * Info/tickets were always meant to stay small throughout (unlike the
+   * other cells, which scale up at md:), so pin it here instead of
+   * fighting Tailwind's utility order.
+   */
+  .shows-extra {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   @media (min-width: 768px) {
@@ -296,7 +320,7 @@
       align-items: baseline;
     }
 
-    .shows-row + .shows-row {
+    .shows-row + .shows-row:not(.shows-row--extra) {
       margin-block-start: 0;
     }
 
@@ -307,7 +331,15 @@
       border-bottom: 1px solid var(--tw-prose-th-borders);
     }
 
-    .shows-table :where(tbody .shows-row:not(:last-child)) {
+    /*
+     * A show is one or two <tr>s (main row, plus an optional
+     * .shows-row--extra) - the border belongs after the *last* row of
+     * each show, not between a show's own two rows. So: every row gets
+     * a border unless it's a main row immediately followed by its own
+     * extra row (that border moves to the extra row instead); the
+     * table's overall last row never gets one.
+     */
+    .shows-table :where(tbody .shows-row:not(:has(+ .shows-row--extra)):not(:last-child)) {
       border-bottom: 1px solid var(--tw-prose-td-borders);
     }
 
@@ -323,14 +355,12 @@
     }
 
     /*
-     * DOM order is date, venue, location, extra (info/tickets) - that's
-     * the order mobile needs (extra reads after City/Country there,
-     * since mobile is plain block stacking in DOM order). Desktop
-     * repositions `.shows-extra` under Venue via grid-column/grid-row
-     * instead, so first/last-child no longer lines up with the visually
-     * first/last column - target them by class instead.
+     * `.shows-extra` is the sole (so also "first") child of its own
+     * `.shows-row--extra` <tr>, but it's positioned under Venue's
+     * column, not the table's left edge - excluded here so it keeps
+     * normal left padding instead of incorrectly zeroing it.
      */
-    .shows-table :where(.shows-row td:first-child, .shows-row--header th:first-child) {
+    .shows-table :where(.shows-row:not(.shows-row--extra) td:first-child, .shows-row--header th:first-child) {
       padding-inline-start: 0;
     }
 
@@ -362,16 +392,35 @@
     }
 
     /*
-     * `.shows-extra` (info/tickets) sits under Venue - a second row in
-     * the same column - rather than after City/Country like the DOM
-     * order (which mobile needs). The header's matching cell is
-     * sr-only-labelled and collapses to zero height since it has no
-     * visible content, so it doesn't introduce a visible 4th row.
+     * `.shows-row--extra` is its own <tr> now (a genuinely separate row,
+     * not a second cell squeezed into the main row via grid-row), so it
+     * gets a normal, independent height - no more fighting Date/Location
+     * over whose padding sets the shared row height. It spans Venue+City
+     * (skipping Date's and Country's columns) rather than auto-placing
+     * at column 1, and its own top padding is zeroed so it hugs the main
+     * row above tightly rather than leaving a visible gap.
+     * `colspan` on the <td> itself has no effect here - overriding a
+     * table to `display: grid` drops the native table layout algorithm
+     * entirely, and colspan/rowspan are meaningless outside it; `grid-
+     * column` is CSS Grid's own equivalent.
      */
     .shows-extra {
-      grid-column: 2;
-      grid-row: 2;
+      grid-column: 2 / 4;
       padding-block-start: 0;
+    }
+
+    /*
+     * The main row's grid track sizes to its tallest cell - if only
+     * Venue's bottom padding were zeroed, whichever of Date/Location
+     * still had normal padding would become the tallest instead, and
+     * the extra row (starting right after the *whole* main row ends)
+     * would still be pushed down by that cell's padding, not Venue's
+     * own content. Zero all three uniformly, and only when a
+     * .shows-row--extra actually follows (rows with no extra content
+     * keep their normal padding).
+     */
+    .shows-row:has(+ .shows-row--extra) > td {
+      padding-block-end: 0;
     }
   }
 </style>

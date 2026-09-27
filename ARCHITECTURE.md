@@ -158,17 +158,54 @@ custom server logic.
     `width: fit-content` to compensate; use `minmax(0, auto)` tracks and
     let content decide.
   - Real `<table>` semantics were chosen deliberately over generic
-    `<div role="table">` elements — it's what a user asked for
-    specifically, and it means info/tickets stay grouped with the venue
-    cell (matching the desktop layout) instead of appearing after
-    City/Country like the pre-rework mobile cards did. That's a real,
-    known, accepted difference from the old mobile design, not a bug.
+    `<div role="table">` elements. Each show is **one or two `<tr>`s**
+    (via a `<template v-for>` in `<tbody>`): a main row (date, venue,
+    location) and an optional `.shows-row--extra` row for info/tickets,
+    rendered only when there's content to show (`v-if`) — so most shows
+    have one `<tr>`, not two. This (not a second cell crammed into the
+    main row) is what lets DOM order put info/tickets after City/Country
+    on mobile (matching the pre-rework cards) while desktop repositions
+    `.shows-extra`'s single `<td>` to `grid-column: 2 / 4` (spanning
+    Venue+City, under the main row) via subgrid, independent of the main
+    row's own height. An earlier version tried to fit info/tickets into
+    a *second cell of the same `<tr>`* via `grid-row: 2` — don't go back
+    to that: a shared row's grid track sizes to its *tallest* cell
+    across every column, so Date/Location's own padding kept inflating
+    the gap above the extra content no matter how much Venue's own
+    padding was trimmed. A genuinely separate `<tr>` has its own
+    independent height with no such coupling.
+  - Border/margin logic has to treat a show's two `<tr>`s as one unit,
+    not two adjacent rows: `.shows-row + .shows-row:not(.shows-row--extra)`
+    (mobile spacing) and `:not(:has(+ .shows-row--extra))` (desktop
+    border-bottom) exist specifically so the gap/border lands after the
+    *last* row of each show, not between a show's own two rows. Both the
+    mobile and desktop versions of the margin rule need the identical
+    `:not(.shows-row--extra)` qualifier — mismatched specificity between
+    them (e.g. only one having it) means the loser can't override the
+    winner regardless of the media query, breaking spacing at whichever
+    breakpoint has the "weaker" selector.
+  - `colspan`/`rowspan` on a `<td>` do nothing once the table's `display`
+    is overridden to `grid` — those attributes are only meaningful under
+    the native table layout algorithm. `grid-column`/`grid-row` are
+    Grid's own equivalent.
 - **`w-full` + `sr-only` together stretch an invisible element to full
   viewport width**: `sr-only` makes an element `position: absolute`; add
   `w-full` and its `width: 100%` resolves against the nearest positioned
   ancestor (or the viewport, if there isn't one) rather than its visual
   parent, silently adding horizontal scroll. Found on the shows search
   `<label>`; check for the same combo before adding it elsewhere.
+- **`@nuxtjs/tailwindcss`'s default `cssPath` was silently missing the
+  real stylesheet**: its default (`assets/css/tailwind.css`) resolves
+  relative to the project root, not Nuxt 4's `app/` srcDir, so it
+  couldn't find `app/assets/css/tailwind.css` and fell back to
+  Tailwind's own generic default CSS (visible as "Using default Tailwind
+  CSS file" in the build log — easy to miss, since Tailwind's base
+  utilities still work fine either way). This silently dropped *every*
+  hand-written rule in that file — `.icon`'s dark-mode color included.
+  Fixed via an explicit `tailwindcss.cssPath: '~/assets/css/tailwind.css'`
+  in `nuxt.config.js` (the `~/` alias forces srcDir-relative resolution).
+  If a custom rule from that file ever seems to just not apply, check
+  the build log for that message before assuming the CSS itself is wrong.
 
 ## Gaps to be aware of
 
