@@ -4,17 +4,21 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2026-09-27',
 
-  modules: [
-    '@nuxt/content',
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/fonts'
-  ],
+  modules: ['@nuxt/content', '@nuxt/image', '@nuxtjs/tailwindcss', '@nuxt/fonts', 'nuxt-studio'],
 
-  content: {
-    preview: {
-      api: 'https://api.nuxt.studio'
-    }
+  studio: {
+    // Studio admin login route
+    route: '/_studio', // default
+
+    // Git repository configuration
+    repository: {
+      provider: 'github', // 'github' or 'gitlab' (default: 'github')
+      owner: 'pidgpowell', // your GitHub/GitLab owner (required)
+      repo: 'clientele', // your repository name (required)
+      branch: 'f-nuxt-studio', // branch to commit to (default: 'main')
+      rootDir: '', // subdirectory for monorepos (default: '')
+      private: true, // request access to private repos (default: true)
+    },
   },
 
   image: {
