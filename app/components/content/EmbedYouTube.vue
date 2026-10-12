@@ -10,9 +10,6 @@
 
 <template>
   <client-only>
-    <lite-youtube
-      nocookie="true"
-      :videoid="videoId"
-    />
+    <lite-youtube nocookie="true" :videoid="videoId" />
   </client-only>
 </template>

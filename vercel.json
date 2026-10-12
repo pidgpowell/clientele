@@ -1,16 +1,16 @@
 {
-    "redirects": [
-        {
-            "source": "/discography",
-            "destination": "/"
-        },
-        {
-            "source": "/blogs/:path*",
-            "destination": "/"
-        },
-        {
-            "source": "/lyrics/:path*",
-            "destination": "/"
-        }
-    ]
+  "redirects": [
+    {
+      "source": "/discography",
+      "destination": "/"
+    },
+    {
+      "source": "/blogs/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/lyrics/:path*",
+      "destination": "/"
+    }
+  ]
 }

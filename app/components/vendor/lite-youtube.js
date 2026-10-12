@@ -1,5 +1,6 @@
-if (typeof global !== 'undefined') {
-  global.HTMLElement = typeof window === 'undefined' ? Object : window.HTMLElement
+if (typeof global !== "undefined") {
+  global.HTMLElement =
+    typeof window === "undefined" ? Object : window.HTMLElement;
 }
 
 /* eslint-disable */
@@ -10,61 +11,61 @@ export class LiteYTEmbed extends HTMLElement {
     this.setupDom();
   }
   static get observedAttributes() {
-    return ['videoid', 'playlistid'];
+    return ["videoid", "playlistid"];
   }
   connectedCallback() {
-    this.addEventListener('pointerover', LiteYTEmbed.warmConnections, {
+    this.addEventListener("pointerover", LiteYTEmbed.warmConnections, {
       once: true,
     });
-    this.addEventListener('click', () => this.addIframe());
+    this.addEventListener("click", () => this.addIframe());
   }
   get videoId() {
-    return encodeURIComponent(this.getAttribute('videoid') || '');
+    return encodeURIComponent(this.getAttribute("videoid") || "");
   }
   set videoId(id) {
-    this.setAttribute('videoid', id);
+    this.setAttribute("videoid", id);
   }
   get playlistId() {
-    return encodeURIComponent(this.getAttribute('playlistid') || '');
+    return encodeURIComponent(this.getAttribute("playlistid") || "");
   }
   set playlistId(id) {
-    this.setAttribute('playlistid', id);
+    this.setAttribute("playlistid", id);
   }
   get videoTitle() {
-    return this.getAttribute('videotitle') || 'Video';
+    return this.getAttribute("videotitle") || "Video";
   }
   set videoTitle(title) {
-    this.setAttribute('videotitle', title);
+    this.setAttribute("videotitle", title);
   }
   get videoPlay() {
-    return this.getAttribute('videoPlay') || 'Play';
+    return this.getAttribute("videoPlay") || "Play";
   }
   set videoPlay(name) {
-    this.setAttribute('videoPlay', name);
+    this.setAttribute("videoPlay", name);
   }
   get videoStartAt() {
-    return Number(this.getAttribute('videoStartAt') || '0');
+    return Number(this.getAttribute("videoStartAt") || "0");
   }
   set videoStartAt(time) {
-    this.setAttribute('videoStartAt', String(time));
+    this.setAttribute("videoStartAt", String(time));
   }
   get autoLoad() {
-    return this.hasAttribute('autoload');
+    return this.hasAttribute("autoload");
   }
   get noCookie() {
-    return this.hasAttribute('nocookie');
+    return this.hasAttribute("nocookie");
   }
   get posterQuality() {
-    return this.getAttribute('posterquality') || 'hqdefault';
+    return this.getAttribute("posterquality") || "hqdefault";
   }
   get posterLoading() {
-    return this.getAttribute('posterloading') || 'lazy';
+    return this.getAttribute("posterloading") || "lazy";
   }
   get params() {
-    return `start=${this.videoStartAt}&${this.getAttribute('params')}`;
+    return `start=${this.videoStartAt}&${this.getAttribute("params")}`;
   }
   setupDom() {
-    const shadowDom = this.attachShadow({ mode: 'open' });
+    const shadowDom = this.attachShadow({ mode: "open" });
     shadowDom.innerHTML = `
     <style>
       :host {
@@ -155,31 +156,34 @@ export class LiteYTEmbed extends HTMLElement {
       <button id="playButton"></button>
     </div>
   `;
-    this.domRefFrame = shadowDom.querySelector('#frame');
+    this.domRefFrame = shadowDom.querySelector("#frame");
     this.domRefImg = {
-      fallback: shadowDom.querySelector('#fallbackPlaceholder'),
+      fallback: shadowDom.querySelector("#fallbackPlaceholder"),
       // webp: shadowDom.querySelector( '#webpPlaceholder' ),
-      jpeg: shadowDom.querySelector('#jpegPlaceholder'),
+      jpeg: shadowDom.querySelector("#jpegPlaceholder"),
     };
-    this.domRefPlayButton = shadowDom.querySelector('#playButton');
+    this.domRefPlayButton = shadowDom.querySelector("#playButton");
   }
   setupComponent() {
     this.initImagePlaceholder();
-    this.domRefPlayButton.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
-    this.setAttribute('title', `${this.videoPlay}: ${this.videoTitle}`);
+    this.domRefPlayButton.setAttribute(
+      "aria-label",
+      `${this.videoPlay}: ${this.videoTitle}`,
+    );
+    this.setAttribute("title", `${this.videoPlay}: ${this.videoTitle}`);
     if (this.autoLoad) {
       this.initIntersectionObserver();
     }
   }
   attributeChangedCallback(name, oldVal, newVal) {
     switch (name) {
-      case 'videoid':
-      case 'playlistid': {
+      case "videoid":
+      case "playlistid": {
         if (oldVal !== newVal) {
           this.setupComponent();
-          if (this.domRefFrame.classList.contains('activated')) {
-            this.domRefFrame.classList.remove('activated');
-            this.shadowRoot.querySelector('iframe').remove();
+          if (this.domRefFrame.classList.contains("activated")) {
+            this.domRefFrame.classList.remove("activated");
+            this.shadowRoot.querySelector("iframe").remove();
             this.isIframeLoaded = false;
           }
         }
@@ -192,7 +196,7 @@ export class LiteYTEmbed extends HTMLElement {
   addIframe(isIntersectionObserver = false) {
     if (!this.isIframeLoaded) {
       const autoplay = isIntersectionObserver ? 0 : 1;
-      const wantsNoCookie = this.noCookie ? '-nocookie' : '';
+      const wantsNoCookie = this.noCookie ? "-nocookie" : "";
       let embedTarget;
       if (this.playlistId) {
         embedTarget = `?listType=playlist&list=${this.playlistId}&`;
@@ -204,37 +208,45 @@ export class LiteYTEmbed extends HTMLElement {
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 src="https://www.youtube${wantsNoCookie}.com/embed/${embedTarget}autoplay=${autoplay}&${this.params}"
 ></iframe>`;
-      this.domRefFrame.insertAdjacentHTML('beforeend', iframeHTML);
-      this.domRefFrame.classList.add('activated');
+      this.domRefFrame.insertAdjacentHTML("beforeend", iframeHTML);
+      this.domRefFrame.classList.add("activated");
       this.isIframeLoaded = true;
-      this.dispatchEvent(new CustomEvent('liteYoutubeIframeLoaded', {
-        detail: {
-          videoId: this.videoId,
-        },
-        bubbles: true,
-        cancelable: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent("liteYoutubeIframeLoaded", {
+          detail: {
+            videoId: this.videoId,
+          },
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
     }
   }
   initImagePlaceholder() {
-    LiteYTEmbed.addPrefetch('preconnect', 'https://i.ytimg.com/');
+    LiteYTEmbed.addPrefetch("preconnect", "https://i.ytimg.com/");
     // const posterUrlWebp = `https://i.ytimg.com/vi_webp/${this.videoId}/${this.posterQuality}.webp`;
     const posterUrlJpeg = `https://i.ytimg.com/vi/${this.videoId}/${this.posterQuality}.jpg`;
     this.domRefImg.fallback.loading = this.posterLoading;
     // this.domRefImg.webp.srcset = posterUrlWebp;
     this.domRefImg.jpeg.srcset = posterUrlJpeg;
     this.domRefImg.fallback.src = posterUrlJpeg;
-    this.domRefImg.fallback.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
-    this.domRefImg?.fallback?.setAttribute('alt', `${this.videoPlay}: ${this.videoTitle}`);
+    this.domRefImg.fallback.setAttribute(
+      "aria-label",
+      `${this.videoPlay}: ${this.videoTitle}`,
+    );
+    this.domRefImg?.fallback?.setAttribute(
+      "alt",
+      `${this.videoPlay}: ${this.videoTitle}`,
+    );
   }
   initIntersectionObserver() {
     const options = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: "0px",
       threshold: 0,
     };
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting && !this.isIframeLoaded) {
           LiteYTEmbed.warmConnections();
           this.addIframe(true);
@@ -245,27 +257,29 @@ src="https://www.youtube${wantsNoCookie}.com/embed/${embedTarget}autoplay=${auto
     observer.observe(this);
   }
   static addPrefetch(kind, url, as) {
-    const linkElem = document.createElement('link');
+    const linkElem = document.createElement("link");
     linkElem.rel = kind;
     linkElem.href = url;
     if (as) {
       linkElem.as = as;
     }
-    linkElem.crossOrigin = 'true';
+    linkElem.crossOrigin = "true";
     document.head.append(linkElem);
   }
   static warmConnections() {
-    if (LiteYTEmbed.isPreconnected)
-      return;
-    LiteYTEmbed.addPrefetch('preconnect', 'https://s.ytimg.com');
-    LiteYTEmbed.addPrefetch('preconnect', 'https://www.youtube.com');
-    LiteYTEmbed.addPrefetch('preconnect', 'https://www.google.com');
-    LiteYTEmbed.addPrefetch('preconnect', 'https://googleads.g.doubleclick.net');
-    LiteYTEmbed.addPrefetch('preconnect', 'https://static.doubleclick.net');
+    if (LiteYTEmbed.isPreconnected) return;
+    LiteYTEmbed.addPrefetch("preconnect", "https://s.ytimg.com");
+    LiteYTEmbed.addPrefetch("preconnect", "https://www.youtube.com");
+    LiteYTEmbed.addPrefetch("preconnect", "https://www.google.com");
+    LiteYTEmbed.addPrefetch(
+      "preconnect",
+      "https://googleads.g.doubleclick.net",
+    );
+    LiteYTEmbed.addPrefetch("preconnect", "https://static.doubleclick.net");
     LiteYTEmbed.isPreconnected = true;
   }
 }
 LiteYTEmbed.isPreconnected = false;
-if (typeof window !== 'undefined' && 'customElements' in window) {
-  customElements.define('lite-youtube', LiteYTEmbed);
+if (typeof window !== "undefined" && "customElements" in window) {
+  customElements.define("lite-youtube", LiteYTEmbed);
 }
