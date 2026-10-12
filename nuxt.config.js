@@ -75,7 +75,7 @@ export default defineNuxtConfig({
 
   postcss: {
     plugins: {
-      'tailwindcss/nesting': false,
+      "tailwindcss/nesting": false,
     },
   },
 });

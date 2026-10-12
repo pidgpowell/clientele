@@ -299,10 +299,9 @@
        * still shrinks to 0 rather than overflowing when the container
        * is tight, since fr tracks respect the minmax floor too.
        */
-      grid-template-columns: minmax(0, auto) minmax(47%, 2fr) minmax(
-          0,
-          auto
-        ) minmax(0, auto);
+      grid-template-columns:
+        minmax(0, auto) minmax(47%, 2fr) minmax(0, auto)
+        minmax(0, auto);
       column-gap: 0;
     }
 
