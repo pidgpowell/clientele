@@ -1,16 +1,13 @@
 <script setup>
   const route = useRoute();
   const { data: doc } = await useAsyncData(route.path, () =>
-    queryCollection("news").path(route.path).first()
+    queryCollection("news").path(route.path).first(),
   );
 </script>
 
 <template>
   <div v-if="doc" class="relative pt-2">
-    <nav
-      class="absolute flex items-center -top-2"
-      aria-label="breadcrumbs"
-    >
+    <nav class="absolute flex items-center -top-2" aria-label="breadcrumbs">
       <IconHome />
       <NuxtLink
         class="text-xs text-gray-600 no-underline dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-800 hover:underline"

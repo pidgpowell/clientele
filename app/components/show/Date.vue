@@ -6,11 +6,7 @@
 </script>
 
 <template>
-  <time
-    class="block font-light text-base/snug"
-    :datetime="date"
-    v-if="date"
-  >
+  <time class="block font-light text-base/snug" :datetime="date" v-if="date">
     {{
       formatDate(date, {
         month: options?.month || "short",

@@ -8,11 +8,7 @@
 </script>
 
 <template>
-  <a
-    :href="url"
-    class="outline-none icon focus-visible:ring-2"
-    aria-label="X"
-  >
+  <a :href="url" class="outline-none icon focus-visible:ring-2" aria-label="X">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 448"

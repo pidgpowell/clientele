@@ -1,6 +1,6 @@
 <script setup>
   const { data } = await useAsyncData("news-home", () =>
-    queryCollection("news").order("date", "DESC").limit(1).all()
+    queryCollection("news").order("date", "DESC").limit(1).all(),
   );
   const excerpt = true;
 
@@ -18,15 +18,9 @@
       <IconHome /> Home
     </nav>
 
-    <div
-      v-for="post in data"
-      :key="post.id"
-    >
+    <div v-for="post in data" :key="post.id">
       <h2>
-        <NuxtLink
-          :to="post.path"
-          class="no-underline hover:underline"
-        >
+        <NuxtLink :to="post.path" class="no-underline hover:underline">
           <span v-html="post.title" />
         </NuxtLink>
       </h2>
@@ -52,11 +46,7 @@
 
     <hr />
 
-    <Shows
-      label="Upcoming Shows"
-      :upcoming="true"
-      direction="asc"
-    />
+    <Shows label="Upcoming Shows" :upcoming="true" direction="asc" />
 
     <NuxtLink
       to="/shows"

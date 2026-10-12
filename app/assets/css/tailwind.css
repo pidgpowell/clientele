@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-a, .prose a {
+a,
+.prose a {
   @apply underline-offset-2 decoration-1;
 }
 
@@ -38,7 +39,7 @@ a, .prose a {
   background: var(--bg);
 }
 
-.icon  path {
+.icon path {
   fill: var(--color);
 }
 
@@ -46,10 +47,10 @@ a, .prose a {
   fill: var(--hover);
 }
 
- @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   .icon {
-      --color: #ffffff55;
-      --hover: #999;
-      --bg: none;
+    --color: #ffffff55;
+    --hover: #999;
+    --bg: none;
   }
 }

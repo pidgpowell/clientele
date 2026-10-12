@@ -2,23 +2,27 @@
 export default defineNuxtConfig({
   ssr: true,
 
-  compatibilityDate: '2026-09-27',
+  compatibilityDate: "2026-09-27",
 
   modules: [
-    '@nuxt/content',
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/fonts'
+    "@nuxt/content",
+    "@nuxt/image",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/fonts",
   ],
 
   content: {
     preview: {
-      api: 'https://api.nuxt.studio'
-    }
+      api: "https://api.nuxt.studio",
+    },
   },
 
   image: {
-    domains: ['pbs.twimg.com', 'dispatch-public.s3.amazonaws.com', 'd1rgjmn2wmqeif.cloudfront.net']
+    domains: [
+      "pbs.twimg.com",
+      "dispatch-public.s3.amazonaws.com",
+      "d1rgjmn2wmqeif.cloudfront.net",
+    ],
   },
 
   // @nuxtjs/tailwindcss's default cssPath ("assets/css/tailwind.css")
@@ -29,7 +33,7 @@ export default defineNuxtConfig({
   // custom rule in that file (.icon, .prose overrides, etc). The `~/`
   // alias forces resolution against srcDir instead.
   tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css'
+    cssPath: "~/assets/css/tailwind.css",
   },
 
   // @nuxt/fonts can't see that Tailwind's font-bold/font-medium/etc utility
@@ -42,26 +46,36 @@ export default defineNuxtConfig({
   // to interpolate it, so every declared weight would render identically.
   fonts: {
     families: [
-      { name: 'Public Sans', weights: ['300 700'], styles: ['normal', 'italic'] }
-    ]
+      {
+        name: "Public Sans",
+        weights: ["300 700"],
+        styles: ["normal", "italic"],
+      },
+    ],
   },
 
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => ['lite-youtube'].includes(tag)
-    }
+      isCustomElement: (tag) => ["lite-youtube"].includes(tag),
+    },
   },
 
   // News and shows content only changes on new deploys, so prerender these
   // routes at build time instead of running SSR on every request.
   routeRules: {
-    '/': { prerender: true },
-    '/news': { prerender: true },
-    '/news/**': { prerender: true },
-    '/shows': { prerender: true }
+    "/": { prerender: true },
+    "/news": { prerender: true },
+    "/news/**": { prerender: true },
+    "/shows": { prerender: true },
   },
 
   devtools: {
-    enabled: false
+    enabled: false,
+  },
+
+  postcss: {
+    plugins: {
+      'tailwindcss/nesting': false,
+    },
   },
 });

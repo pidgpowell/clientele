@@ -48,9 +48,9 @@
   const socialImage = new URL(
     img(
       "https://dispatch-public.s3.amazonaws.com/bc10ea7a3319e8fcd4a92e9a06f081fa15ee2401_d89ac3f07b85511df3d3917029449823efebd97d_medium_jpg",
-      { width: 1200, height: 630, fit: "cover", format: "jpeg" }
+      { width: 1200, height: 630, fit: "cover", format: "jpeg" },
     ),
-    "https://theclientele.co.uk"
+    "https://theclientele.co.uk",
   ).href;
 
   useSeoMeta({
@@ -70,10 +70,7 @@
     class="h-screen px-4 pt-2 pb-4 mb-2 sm:p-16 sm:pt-10 sm:pb-4 grid gap-8 font-body"
   >
     <div class="flex flex-col pe-1 gap-4 sm:pe-0">
-      <nav
-        class="flex mb-4 gap-4"
-        role="navigation"
-      >
+      <nav class="flex mb-4 gap-4" role="navigation">
         <NuxtLink
           to="/news"
           class="text-gray-800 outline-none dark:text-gray-200 focus-visible:ring-2"
@@ -88,10 +85,7 @@
         >
       </nav>
 
-      <NuxtLink
-        to="/"
-        class="outline-none focus-visible:ring-2"
-      >
+      <NuxtLink to="/" class="outline-none focus-visible:ring-2">
         <h1>
           <svg
             aria-labelledby="title"

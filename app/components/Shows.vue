@@ -53,7 +53,9 @@
   const filterBySearch = (item) => {
     if (!search.value) return true;
     const searchFields = [item.venue, item.city, item.country];
-    return searchFields.some((field) => field.toLowerCase().includes(search.value.toLowerCase()));
+    return searchFields.some((field) =>
+      field.toLowerCase().includes(search.value.toLowerCase()),
+    );
   };
 
   const dates = computed(() => {
@@ -63,7 +65,10 @@
       .filter(filterBySearch)
       .sort(
         byValue(
-          (i) => (currentSort.value === "date" ? new Date(i[currentSort.value]) : i[currentSort.value]),
+          (i) =>
+            currentSort.value === "date"
+              ? new Date(i[currentSort.value])
+              : i[currentSort.value],
           currentSort.value === "date"
             ? byNumber({ desc: direction.value[currentSort.value] })
             : byString({ desc: direction.value[currentSort.value] }),
@@ -80,7 +85,11 @@
 <template>
   <div class="block">
     <div class="flex flex-col justify-end xs:flex-row xs:items-center gap-2">
-      <h2 class="!mt-0 me-auto !mb-0" v-html="label" :id="`table-label-${upcoming ? 'upcoming' : 'old'}`" />
+      <h2
+        class="!mt-0 me-auto !mb-0"
+        v-html="label"
+        :id="`table-label-${upcoming ? 'upcoming' : 'old'}`"
+      />
       <div class="flex gap-2" v-if="!upcoming">
         <label for="year" class="sr-only">Year</label>
         <select
@@ -118,13 +127,22 @@
               @click="sort('date')"
             >
               Date
-              <IconTriangle v-if="currentSort === 'date'" :class="{ 'rotate-180': direction.date }" />
+              <IconTriangle
+                v-if="currentSort === 'date'"
+                :class="{ 'rotate-180': direction.date }"
+              />
             </button>
           </th>
           <th>
-            <button class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2" @click="sort('venue')">
+            <button
+              class="flex items-center font-bold outline-none gap-1 focus-visible:ring-2"
+              @click="sort('venue')"
+            >
               Venue
-              <IconTriangle v-if="currentSort === 'venue'" :class="{ 'rotate-180': direction.venue }" />
+              <IconTriangle
+                v-if="currentSort === 'venue'"
+                :class="{ 'rotate-180': direction.venue }"
+              />
             </button>
           </th>
           <th class="shows-location">
@@ -133,14 +151,20 @@
               @click="sort('city')"
             >
               City
-              <IconTriangle v-if="currentSort === 'city'" :class="{ 'rotate-180': direction.city }" />
+              <IconTriangle
+                v-if="currentSort === 'city'"
+                :class="{ 'rotate-180': direction.city }"
+              />
             </button>
             <button
               class="shows-country flex items-center font-bold outline-none gap-1 focus-visible:ring-2"
               @click="sort('country')"
             >
               Country
-              <IconTriangle v-if="currentSort === 'country'" :class="{ 'rotate-180': direction.country }" />
+              <IconTriangle
+                v-if="currentSort === 'country'"
+                :class="{ 'rotate-180': direction.country }"
+              />
             </button>
           </th>
           <th class="shows-extra">
@@ -158,20 +182,35 @@
               <ShowVenue :venue="show.venue" />
             </td>
             <td class="shows-location">
-              <span class="shows-city break-all md:break-normal text-base">{{ show.city }}</span>
-              <span class="shows-country break-all md:break-normal text-base">{{ show.country }}</span>
+              <span class="shows-city break-all md:break-normal text-base">{{
+                show.city
+              }}</span>
+              <span class="shows-country break-all md:break-normal text-base">{{
+                show.country
+              }}</span>
             </td>
           </tr>
-          <tr v-if="show.info || (upcoming && show['ticket-url'])" class="shows-row shows-row--extra">
-            <td class="shows-extra flex flex-wrap text-sm leading-tight flex-row gap-y-1 gap-x-1 mb-1 text-pretty">
-              <span v-if="show.info" v-html="show.info" class="text-sm text-gray-700 dark:text-gray-500 mt-1" />
+          <tr
+            v-if="show.info || (upcoming && show['ticket-url'])"
+            class="shows-row shows-row--extra"
+          >
+            <td
+              class="shows-extra flex flex-wrap text-sm leading-tight flex-row gap-y-1 gap-x-1 mb-1 text-pretty"
+            >
+              <span
+                v-if="show.info"
+                v-html="show.info"
+                class="text-sm text-gray-700 dark:text-gray-500 mt-1"
+              />
               <ShowTickets :show="show" v-if="upcoming && show['ticket-url']" />
             </td>
           </tr>
         </template>
       </tbody>
     </table>
-    <p v-if="dates.length === 0" class="mb-6 font-light text-gray-500">No shows scheduled.</p>
+    <p v-if="dates.length === 0" class="mb-6 font-light text-gray-500">
+      No shows scheduled.
+    </p>
   </div>
 </template>
 
@@ -260,7 +299,10 @@
        * still shrinks to 0 rather than overflowing when the container
        * is tight, since fr tracks respect the minmax floor too.
        */
-      grid-template-columns: minmax(0, auto) minmax(47%, 2fr) minmax(0, auto) minmax(0, auto);
+      grid-template-columns: minmax(0, auto) minmax(47%, 2fr) minmax(
+          0,
+          auto
+        ) minmax(0, auto);
       column-gap: 0;
     }
 
@@ -300,7 +342,8 @@
      * extra row (that border moves to the extra row instead); the
      * table's overall last row never gets one.
      */
-    .shows-table :where(tbody .shows-row:not(:has(+ .shows-row--extra)):not(:last-child)) {
+    .shows-table
+      :where(tbody .shows-row:not(:has(+ .shows-row--extra)):not(:last-child)) {
       border-bottom: 1px solid var(--tw-prose-td-borders);
     }
 
@@ -321,7 +364,11 @@
      * column, not the table's left edge - excluded here so it keeps
      * normal left padding instead of incorrectly zeroing it.
      */
-    .shows-table :where(.shows-row:not(.shows-row--extra) td:first-child, .shows-row--header th:first-child) {
+    .shows-table
+      :where(
+        .shows-row:not(.shows-row--extra) td:first-child,
+        .shows-row--header th:first-child
+      ) {
       padding-inline-start: 0;
     }
 
